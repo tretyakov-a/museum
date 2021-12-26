@@ -33,8 +33,12 @@ module.exports = (env) => {
       new CopyPlugin({
         patterns: [
           {
-            from: path.resolve(__dirname, 'src/assets/favicon.ico'),
+            from: path.resolve(__dirname, 'src/tours/*'),
             to: path.resolve(__dirname, 'dist'),
+          },
+          {
+            from: path.resolve(__dirname, 'src/assets/favicon.ico'),
+            to: path.resolve(__dirname, 'dist/tours'),
           },
         ],
       }),

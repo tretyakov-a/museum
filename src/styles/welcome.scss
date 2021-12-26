@@ -40,11 +40,23 @@
   }
 
   &__discover-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 360px;
     height: 75px;
     border-radius: 10px;
     background: $ui-color;
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 26px;
+    letter-spacing: 2px;
     color: $header-color-dark-bg;
+
+    &:hover {
+      background: $header-color;
+      color: $light-text-color;
+    }
   }
 }
 

@@ -60,3 +60,35 @@ ul {
   text-transform: uppercase;
   background: url("../assets/logo.svg") no-repeat;
 }
+
+.section {
+  &:not(.welcome) {
+    padding: 75px 0;
+  }
+
+  &__header {
+    position: relative;
+    color: $header-color;
+    font-family: $header-font;
+    font-weight: normal;
+    font-size: 80px;
+    line-height: 90px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-bottom: 75px;
+    text-align: left;
+
+    &_dark-bg {
+      color: $light-text-color;
+    }
+    
+    &_bottom-line {
+      &::after {
+        content: "";
+        display: block;
+        height: 28px;
+        border-bottom: 3px solid $ui-color;
+      }
+    }
+  }
+}
