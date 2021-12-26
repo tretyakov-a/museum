@@ -1,10 +1,21 @@
 <section class="explore section">
   <div class="explore__container container">
-    <h2 class="explore__header section__header section__header_dark-bg section__header_bottom-line">
-      Picture explore
-    </h2>
-    <div class="explore__content section__content">
-      
+    <div class="explore__left">
+      <h2 class="explore__header section__header section__header_dark-bg section__header_bottom-line">
+        Picture explore
+      </h2>
+      <div class="explore__content section__content">
+        <p>Las Meninas is a 1656 painting by Diego Velázquez, the leading artist of the Spanish Golden Age.</p>
+        <p>It was cleaned in 1984 to remove a "yellow veil" of dust that had gathered since the previous restoration in the 19th century.</p>
+        <p>The cleaning provoked furious protests, not because the picture had been damaged in any way, but because it looked different.</p>
+      </div>
+    </div>
+    <div class="explore__right">
+      <div class="comparing-slider">
+        <div class="comparing-slider__control"></div>
+        <img class="comparing-slider__before" src="<%= require('../pictures/explore-slider/before.jpg') %>" alt="before">
+        <img class="comparing-slider__after" src="<%= require('../pictures/explore-slider/after.jpg') %>" alt="after">
+      </div>
     </div>
   </div>
 </section>
