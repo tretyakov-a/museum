@@ -1,0 +1,144 @@
+.tickets {
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__left {
+    flex-basis: 50%; // 720px
+
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__right {
+    flex-basis: 45.83%; // 660px
+  }
+}
+
+.tickets-form {
+
+  display: flex;
+  justify-content: space-between;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 26px;
+
+  label {
+    display: block;
+  }
+
+  &__type {
+    .tickets-form__title {
+      margin-bottom: 50px;
+    }
+
+    label {
+      position: relative;
+      margin-bottom: 25px;
+      padding-left: 40px;
+      cursor: pointer;
+
+      span {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        left: 0;
+        top: 4px;
+        width: 17px;
+        height: 17px;
+        border: 2px solid $dark-text-color;
+        border-radius: 50%;
+      }
+    }
+
+    input {
+      display: none;
+
+      &:checked + span::after {
+        content: "";
+        width: 7px;
+        height: 7px;
+        background: $dark-text-color;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  &__amount {
+    text-align: right;
+
+    label {
+      text-align: left;
+      width: 150px;
+    }
+  }
+
+  &__number {
+    width: 100%;
+    height: 50px;
+    margin-top: 10px;
+    border: 3px solid $dark-text-color;
+    display: inline-flex;
+    align-items: center;
+
+    &-dec, &-inc {
+      width: 46px;
+      font-weight: normal;
+      font-size: 32px;
+      line-height: 37px;
+    }
+
+    &-input {
+      all: unset;
+      text-align: center;
+      padding-left: 10px;
+      width: 42px;
+    }
+  }
+
+  &__title {
+    margin-bottom: 25px;
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 33px;
+  }
+
+  &__total {
+    letter-spacing: 1.65px;
+    margin-bottom: 60px;
+  }
+
+  &__counters {
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    label {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__submit {
+    width: 175px;
+    height: 50px;
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 26px;
+    letter-spacing: 2px;
+    background: $bg-dark-color;
+    color: $light-text-color;
+    border-radius: 2px;
+    transition: $animation-duration;
+  }
+
+  &__submit:hover {
+    color: $light-text-color;
+    background: $header-color;
+  }
+}

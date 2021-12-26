@@ -1,10 +1,57 @@
-<section class="tickets section">
+<section class="tickets section" id="tickets">
   <div class="tickets__container container">
     <h2 class="tickets__header section__header section__header_bottom-line">
       Buy tickets
     </h2>
     <div class="tickets__content section__content">
-      
+      <div class="tickets__left">
+        <img src="<%- require('../pictures/tickets-img.jpg') %>" alt="picture in tickets section">
+      </div>
+      <div class="tickets__right">
+        <form class="tickets__form tickets-form" action="#">
+          <div class="tickets-form__type">
+            <h3 class="tickets-form__title">Ticket Type</h3>
+            <label>
+              <input type="radio" name="ticket-type" checked>
+              <span></span>
+              Permanent exhibition
+            </label>
+            <label>
+              <input type="radio" name="ticket-type">
+              <span></span>
+              Temporary exhibition
+            </label>
+            <label>
+              <input type="radio" name="ticket-type">
+              <span></span>
+              Combined Admission
+            </label>
+          </div>
+          <div class="tickets-form__amount">
+            <h3 class="tickets-form__title">Amount</h3>
+            <div class="tickets-form__counters">
+              <label>
+                Basic 18+<br>
+                <span class="tickets-form__number">
+                  <button class="tickets-form__number-dec" type="button" onclick="this.nextElementSibling.stepDown()">&#8722;</button>
+                  <input class="tickets-form__number-input" type="number" name="basic" min="1" max="20" value="1" readonly>
+                  <button class="tickets-form__number-inc" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+                </span>
+              </label>
+              <label>
+                Basic 65+<br>
+                <span class="tickets-form__number">
+                  <button class="tickets-form__number-dec" type="button" onclick="this.nextElementSibling.stepDown()">&#8722;</button>
+                  <input class="tickets-form__number-input" type="number" name="senior" min="1" max="20" value="1" readonly>
+                  <button class="tickets-form__number-inc" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+                </span>
+              </label>
+            </div>
+            <h3 class="tickets-form__title tickets-form__total">Total &euro;220</h3>
+            <button class="tickets-form__submit">Buy Now</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </section>

@@ -1,0 +1,40 @@
+.gallery {
+  background: $bg-dark-color;
+  padding-bottom: 0 !important;
+  
+  &__content {
+    position: relative;
+  }
+
+  &__bottom-overlay {
+    position: absolute;
+    height: 360px;
+    width: 100%;
+    bottom: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, $bg-dark-color 100%);
+  }
+
+  &__list {
+    height: 1960px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    overflow: hidden;
+  }
+
+  &__column {
+    flex-basis: calc((100% - 2 * 36px) / 3);
+
+    &:nth-child(1), &:nth-child(3) {
+      margin-top: 50px;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      object-fit: cover;
+      margin-bottom: 24px;
+    }
+  }
+}
