@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Forum&family=Roboto:wght@100;300;400;700&display=swap');
+
+:root {
+  --light-text-color: white;
+  --dark-text-color: black;
+  --header-color: #9d8665;
+  --ui-color: #710707;
+  --bg-dark-color: #030303;
+  --bg-light-color: white;
+
+  --main-font: 'Roboto', sans-serif;
+  --header-font: 'Forum', sans-serif;
+
+  --font-size: 18px;
+}
+
+$hamburger-size: 50px;
+$container-width: 1440px;
+$container-padding: 20px;
+$animation-duration: 0.2s;
+
+$bg-light-color: var(--bg-light-color);
+$bg-dark-color: var(--bg-dark-color);
+$header-color: var(--header-color);
+$ui-color: var(--ui-color);
+$dark-text-color: var(--dark-text-color);
+$light-text-color: var(--light-text-color);
+
+$main-font: var(--main-font);
+$header-font: var(--header-font);
+$font-size: var(--font-size);

@@ -1,0 +1,33 @@
+*, ::before, ::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--main-font);
+  color: var(--dark-text-color);
+  background-color: var(--bg-light-color);
+  font-size: $font-size;
+  font-weight: 200;
+}
+
+a {
+  text-decoration: none;
+  color: var(--light-text-color);
+  transition: 0.2s;
+}
+
+img {
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  max-width: $container-width + 2 * $container-padding;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+}

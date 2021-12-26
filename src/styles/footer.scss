@@ -1,0 +1,34 @@
+.footer {
+  height: 392px;
+  margin-top: 75px;
+  background: $bg-dark-color;
+  color: $light-text-color;
+  font-weight: 200;
+  font-size: 22px;
+  line-height: 22px;
+  letter-spacing: 2px;
+
+  &__top {
+    height: 265px;
+  }
+  
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
+
+  &__bottom {
+    height: 127px;
+    border-top: 3px solid #666666;
+  }
+
+  &__github-link {
+    text-align: right;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+}

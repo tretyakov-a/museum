@@ -1,0 +1,11 @@
+.header {
+
+  h1 {
+    font-family: $header-font;
+    font-size: 80px;
+    line-height: 90px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: $header-color;
+  }
+}
