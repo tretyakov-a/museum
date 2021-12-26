@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--main-font);
   color: var(--dark-text-color);
@@ -16,6 +20,9 @@ a {
   text-decoration: none;
   color: var(--light-text-color);
   transition: 0.2s;
+}
+a:hover {
+  color: $header-color;
 }
 
 img {
@@ -30,4 +37,17 @@ ul {
   max-width: $container-width + 2 * $container-padding;
   margin: 0 auto;
   padding: 0 $container-padding;
+}
+
+.logo {
+  display: block;
+  width: 200px;
+  height: 33px;
+  padding-left: 74px;
+  font-family: $header-font;
+  font-size: 28px;
+  line-height: 31px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  background: url("../assets/logo.svg") no-repeat;
 }

@@ -4,13 +4,15 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="<%= require('./assets/favicon.ico') %>" type="image/x-icon">
   <title>
-    Project title
+    Museum
   </title>
 </head>
 <body>
   <%- require('./templates/header.ejs')() %>
   <main class="main">
+    <%- require('./templates/welcome.ejs')() %>
   </main>
   <%- require('./templates/footer.ejs')() %>
 </body>

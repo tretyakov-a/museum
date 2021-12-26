@@ -1,0 +1,45 @@
+<section class="welcome section">
+  <div class="welcome__container container">
+    <div class="welcome__inner">
+      <div class="welcome__title">Welcome to the Louvre</div>
+      <div class="welcome__subtitle">From the castle to the museum</div>
+      <button class="welcome__discover-btn">Discover the Louvre</button>
+    </div>
+    <div class="welcome__slider welcome-slider">
+      <div class="welcome-slider__overlay"></div>
+      <div class="welcome-slider__controls">
+        <div class="welcome-slider__counter">
+          <span class="welcome-slider__current">01</span>
+          &nbsp;|&nbsp;
+          <span class="welcome-slider__total">05</span>
+        </div>
+        <div class="welcome-slider__dots-group">
+          <button class="welcome-slider__dot welcome-slider__dot_active"></button>
+          <button class="welcome-slider__dot"></button>
+          <button class="welcome-slider__dot"></button>
+          <button class="welcome-slider__dot"></button>
+          <button class="welcome-slider__dot"></button>
+        </div>
+        <button class="welcome-slider__prev-btn"></button>
+        <button class="welcome-slider__next-btn"></button>
+      </div>
+      <ul class="welcome-slider__list">
+        <li class="welcome-slider__item">
+          <img src="<%= require('../pictures/welcome-slider/1.jpg') %>" alt="">
+        </li>
+        <li class="welcome-slider__item">
+          <img src="<%= require('../pictures/welcome-slider/2.jpg') %>" alt="">
+        </li>
+        <li class="welcome-slider__item">
+          <img src="<%= require('../pictures/welcome-slider/3.jpg') %>" alt="">
+        </li>
+        <li class="welcome-slider__item">
+          <img src="<%= require('../pictures/welcome-slider/4.jpg') %>" alt="">
+        </li>
+        <li class="welcome-slider__item">
+          <img src="<%= require('../pictures/welcome-slider/5.jpg') %>" alt="">
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,15 @@
+.welcome {
+  &__inner {
+
+  }
+
+  &__title {
+    font-family: $header-font;
+    color: $header-color-dark-bg;
+    font-size: 80px;
+    line-height: 90px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: $header-color;
+  }
+}

@@ -1,11 +1,22 @@
 .header {
+  background: $bg-dark-color;
+  height: $header-height;
 
-  h1 {
-    font-family: $header-font;
-    font-size: 80px;
-    line-height: 90px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: $header-color;
+  &__container,
+  &__menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
+
+  &__menu {
+    font-size: 22px;
+    line-height: 26px;
+    letter-spacing: 2px;
+
+    &-item:not(:last-child) {
+      margin-right: 55px;
+    }
   }
 }
