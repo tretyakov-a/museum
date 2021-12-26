@@ -4,6 +4,7 @@
   --light-text-color: white;
   --dark-text-color: black;
   --header-color: #9d8665;
+  --ui-active-color: #d2b183;
   --ui-color: #710707;
   --bg-dark-color: #030303;
   --bg-light-color: white;
@@ -24,6 +25,7 @@ $bg-light-color: var(--bg-light-color);
 $bg-dark-color: var(--bg-dark-color);
 $header-color: var(--header-color);
 $header-color-dark-bg: var(--light-text-color);
+$ui-active-color: var(--ui-active-color);
 $ui-color: var(--ui-color);
 $dark-text-color: var(--dark-text-color);
 $light-text-color: var(--light-text-color);
