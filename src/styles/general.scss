@@ -91,3 +91,11 @@ ul {
     }
   }
 }
+
+.parallax {
+  width: 100%;
+  height: 400px;
+  background: url("../pictures/parallax.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+}

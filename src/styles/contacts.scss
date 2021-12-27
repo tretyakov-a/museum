@@ -1,3 +1,35 @@
 .contacts {
-  padding-bottom: 75px;
+  &__content {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__info {
+    flex-basis: 29.16%;
+  }
+
+  &__title {
+    margin-bottom: 50px;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 33px;
+  }
+
+  &__info-row {
+    margin-bottom: 25px;
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 26px;
+  }
+
+  &__map {
+    flex-basis: 66.66%;
+
+    img {
+      display: block;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
 }
