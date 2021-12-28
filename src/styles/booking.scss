@@ -46,9 +46,9 @@
 }
 
 .booking-form {
-  
   &__inner {
     width: 970px;
+    height: 665px;
     display: flex;
     justify-content: space-between;
   }
@@ -85,7 +85,7 @@
   }
 
   input, select {
-    width: 100%;
+    width: calc(100% - 43px);
     height: 100%;
     border: none;
     outline: none;
@@ -109,7 +109,7 @@
     
     &::-webkit-calendar-picker-indicator {
       margin: 0;
-      width: calc(100% - 43px);
+      width: 100%;
       height: 100%;
       cursor: pointer;
     }
@@ -179,7 +179,7 @@
         flex: 1 1 auto;
         text-align: center;
         padding: 0px;
-        
+
         &::-webkit-inner-spin-button {
           display: none;
         }
@@ -236,6 +236,274 @@
       color: $light-text-color;
       background: $bg-dark-color;
     }
+  }
 
+  &__overview {
+    height: 100%;
+    padding: 25px 30px;
+    display: flex;
+    flex-direction: column;
+
+    &-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 22px;
+
+      &-info {
+        flex: 1 1 auto;
+        margin-right: 20px;
+      }
+
+      &-img {
+        img {
+          display: block;
+          width: 150px;
+          object-fit: cover;
+        }
+      }
+    }
+
+    &-title {
+      font-weight: 500;
+      font-size: 32px;
+      line-height: 37px;
+    }
+
+    &-subtitle {
+      font-weight: 500;
+      font-size: 22px;
+      line-height: 26px;
+      color: $ui-color;
+      margin-bottom: 10px;
+    }
+
+    &-summary {
+      font-weight: 300;
+      font-size: 18px;
+      line-height: 21px;
+
+      &-item {
+        height: 22px;
+        margin-bottom: 5px;
+        padding-left: 30px;
+        background-repeat: no-repeat;
+        background-position: left top 2px;
+
+        &_date {
+          background-image: url("../assets/booking/date.svg");
+        }
+
+        &_time {
+          background-image: url("../assets/booking/time.svg");
+        }
+
+        &_ticket-type {
+          background-image: url("../assets/booking/arrow.svg");
+        }
+      }
+    }
+
+    &-total {
+      margin-bottom: 10px;
+
+      &-list {
+        margin-bottom: 10px;
+
+        &::after {
+          content: "";
+          display: block;
+          height: 2px;
+          background: $ui-color;
+        }
+
+        &-item {
+          height: 20px;
+          margin-bottom: 12px;
+          display: flex;
+          justify-content: stretch;
+          align-items: center;
+          font-size: 22px;
+          line-height: 26px;
+          font-weight: normal;
+
+          &-count {
+            flex: 0 0 32px;
+            margin-right: 10px;
+            font-size: 18px;
+            line-height: 21px;
+            color: #a4a4a3;
+            background: $bg-dark-color;
+            text-align: center;
+            border-radius: 5px;
+          }
+
+          &-title {
+            justify-self: flex-start;
+            flex: 1 1 auto;
+            margin-right: 10px;
+          }
+
+          &-amount {
+            flex: 0 0 auto;
+          }
+        }
+      }
+
+      &-sum {
+        display: flex;
+        justify-content: space-between;
+
+        &-title {
+          font-weight: normal;
+          font-size: 32px;
+          line-height: 37px;
+        }
+
+        &-amount {
+          font-weight: 500;
+          font-size: 32px;
+          line-height: 37px;
+        }
+      }
+
+    }
+  }
+
+  &__submit {
+    align-self: flex-end;
+    width: 220px;
+    height: 45px;
+    background: $ui-color;
+    color: $light-text-color;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 26px;
+    transition: $animation-duration ease-in;
+
+    &:hover {
+      background-color: $header-color;
+    }
+  }
+}
+
+.credit-card {
+  position: relative;
+  height: 241px;
+  margin-bottom: 26px;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  color: #161615;
+
+  input, select {
+    width: 100%;
+    height: 35px;
+    padding: 5px 10px;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    background: $bg-light-color;
+    border: 1px solid #a4a4a3;
+  }
+
+  &__front,
+  &__back {
+    width: 360px;
+    height: 211px;
+    padding: 15px 20px;
+    border-radius: 5px;
+  }
+
+
+  &__front {
+    position: relative;
+    z-index: 2;
+    background: url("../assets/booking/visa.svg"), url("../assets/booking/mastercard.svg"), #bcbcbc;
+    background-repeat: no-repeat, no-repeat;
+    background-position: right 20px top 34px, right 20px top 65px;
+    background-size: 55px, 53px;
+  }
+
+  &__row:not(:last-child) {
+    width: 215px;
+    margin-bottom: 10px;
+  }
+
+  &__title {
+    margin-bottom: 5px;
+  }
+
+  &__date {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__month,
+  &__year {
+    position: relative;
+    flex: 1 1 calc((100% - 15px) / 2);
+    display: flex;
+
+    input[type="text"] {
+      flex: 1 1 auto;
+      padding-right: 0px;
+      pointer-events: none;
+    }
+
+    select {
+      position: absolute;
+      z-index: 1;
+      opacity: 0;
+      cursor: pointer;
+    }
+  }
+
+  &__month {
+    margin-right: 15px;
+  }
+
+  &__arrow-btn {
+    flex: 1 0 28px;
+    display: block;
+    height: 100%;
+    border: 1px solid #a4a4a3;
+    border-left: none;
+    outline: none;
+    background: url("../assets/booking/card-select-arrow.svg"), $bg-light-color;
+    background-repeat: no-repeat;
+    background-position: center center;
+    pointer-events: none;
+  }
+
+  &__back {
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    background: #939393;
+  }
+
+  &__stripe {
+    background: #161615;
+    height: 45px;
+    margin: 10px -20px 15px;
+  }
+  
+  &__cvc {
+    width: 75px;
+    align-self: flex-end;
+    padding-left: 9px;
+    text-align: left;
+
+    input {
+      width: 75px;
+      margin-left: -9px;
+    }
+  }
+
+  &__cvc-info {
+    margin-top: 6px;
   }
 }

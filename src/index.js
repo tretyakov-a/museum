@@ -3,6 +3,8 @@ import './styles/index.scss';
 const bookingDateInput = document.querySelector('.booking-form__date-input');
 const bookingTimeInput = document.querySelector('.booking-form__time-input');
 const bookingTicketTypeSelect = document.querySelector('.booking-form__ticket-type-select');
+const creditCardMonthSelect = document.querySelector('.credit-card__month-select');
+const creditCardYearSelect = document.querySelector('.credit-card__year-select');
 
 function handleInput(e) {
   const value = e.target.localName === 'input'
@@ -10,10 +12,12 @@ function handleInput(e) {
     : e.target.querySelector(`[value="${e.target.value}"]`).textContent;
   e.target.previousElementSibling.previousElementSibling.value = value;
 }
+
 bookingDateInput.addEventListener('input', handleInput);
 bookingTimeInput.addEventListener('input', handleInput);
 bookingTicketTypeSelect.addEventListener('change', handleInput);
-
+creditCardMonthSelect.addEventListener('change', handleInput);
+creditCardYearSelect.addEventListener('change', handleInput);
 
 const inputRangeElements = document.querySelectorAll('.custom-input-range');
 

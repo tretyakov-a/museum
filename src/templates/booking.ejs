@@ -1,11 +1,11 @@
 <div class="booking">
   <div class="booking__container container">
     <div class="booking__inner">
-      <form class="booking__form booking-form" action="#">
+      <form class="booking__form booking-form" action="#" method="post">
         <div class="booking-form__inner">
           <div class="booking-form__data">
             <h2 class="booking__header">Booking tickets</h2>
-            <h3 class="booking__subheader">Tour to Louvre</h3>
+            <h4 class="booking__subheader">Tour to Louvre</h4>
             <div class="booking-form__row booking-form__row_columns">
               <div class="booking-form__input-wrapper booking-form__input-wrapper_date">
                 <input class="booking-form__date-text" type="text" name="booking-date-text" placeholder="Date">
@@ -49,7 +49,7 @@
               <div class="booking-form__input-wrapper booking-form__input-wrapper_tickets-amount">
                 <h3 class="booking-form__tickets-amount-header">Entry ticket</h3>
                 <div class="booking-form__tickets-amount-row">
-                  <span class="booking-form__number-title">Basic 18+ (20 €)</span>
+                  <span class="booking-form__number-title">Basic 18+ (20 &euro;)</span>
                   <span class="booking-form__number">
                     <button class="booking-form__number-dec" type="button" onclick="this.nextElementSibling.stepDown()">&#8722;</button>
                     <input class="booking-form__number-input" type="number" name="basic" min="1" max="20" value="1" readonly>
@@ -57,7 +57,7 @@
                   </span>
                 </div>
                 <div class="booking-form__tickets-amount-row">
-                  <span class="booking-form__number-title">Senior 65+ (10 €)</span>
+                  <span class="booking-form__number-title">Senior 65+ (10 &euro;)</span>
                   <span class="booking-form__number">
                     <button class="booking-form__number-dec" type="button" onclick="this.nextElementSibling.stepDown()">&#8722;</button>
                     <input class="booking-form__number-input" type="number" name="senior" min="1" max="20" value="1" readonly>
@@ -67,9 +67,111 @@
               </div>
             </div>
           </div>
-
           <div class="booking-form__overview">
-            
+            <div class="booking-form__overview-header">
+              <div class="booking-form__overview-header-info">
+                <h3 class="booking-form__overview-title">Overview</h3>
+                <h4 class="booking-form__overview-subtitle">Tour to Louvre</h4>
+                <ul class="booking-form__overview-summary">
+                  <li class="booking-form__overview-summary-item booking-form__overview-summary-item_date">
+                    Friday, August 19
+                  </li>
+                  <li class="booking-form__overview-summary-item booking-form__overview-summary-item_time">
+                    16 : 30
+                  </li>
+                  <li class="booking-form__overview-summary-item booking-form__overview-summary-item_ticket-type">
+                    Temporary exhibition
+                  </li>
+                </ul>
+              </div>
+              <div class="booking-form__overview-header-img">
+                <img src="<%- require('../pictures/booking/overview.jpg') %>" alt="tour overview picture">
+              </div>
+            </div>
+            <div class="booking-form__overview-total">
+              <ul class="booking-form__overview-total-list">
+                <li class="booking-form__overview-total-list-item">
+                  <span class="booking-form__overview-total-list-item-count">2</span>
+                  <span class="booking-form__overview-total-list-item-title">Basic (20 &euro;)</span>
+                  <span class="booking-form__overview-total-list-item-amount">40 &euro;</span>
+                </li>
+                <li class="booking-form__overview-total-list-item">
+                  <span class="booking-form__overview-total-list-item-count">2</span>
+                  <span class="booking-form__overview-total-list-item-title">Senior (10 &euro;)</span>
+                  <span class="booking-form__overview-total-list-item-amount">20 &euro;</span>
+                </li>
+              </ul>
+              <div class="booking-form__overview-total-sum">
+                <span class="booking-form__overview-total-sum-title">Total:</span>
+                <span class="booking-form__overview-total-sum-amount">60 &euro;</span>
+              </div>
+            </div>
+            <div class="booking-form__credit-card credit-card">
+              <div class="credit-card__front">
+                <div class="credit-card__row">
+                  <div class="credit-card__title">
+                    Card number
+                  </div>
+                  <input type="text" name="credit-card-number">
+                </div>
+                <div class="credit-card__row">
+                  <div class="credit-card__title">
+                    Expiration date
+                  </div>
+                  <div class="credit-card__date">
+                    <div class="credit-card__month">
+                      <input class="credit-card__month-text" type="text" name="credit-card-month-text">
+                      <button class="credit-card__arrow-btn" type="button"></button>
+                      <select class="credit-card__month-select" type="text" name="credit-card-month">
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                      </select>
+                    </div>
+                    <div class="credit-card__year">
+                      <input class="credit-card__year-text" type="text" name="credit-card-year-text">
+                      <button class="credit-card__arrow-btn" type="button"></button>
+                      <select class="credit-card__year-select" type="text" name="credit-card-year">
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                      </select>
+                    </div>
+                  </div>                  
+                </div>
+                <div class="credit-card__row">
+                  <div class="credit-card__title">
+                    Cardholder Name
+                  </div>
+                  <input type="text" name="credit-card-number">
+                </div>
+              </div>
+              <div class="credit-card__back">
+                <div class="credit-card__stripe"></div>
+                <div class="credit-card__cvc">
+                  <div class="credit-card__title">
+                    CVC/CVV
+                  </div>
+                  <input type="text" name="credit-card-cvc">
+                  <div class="credit-card__cvc-info">
+                    The last<br>3 or 4 digits<br>on back<br>of the card
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="booking-form__submit">Book</button>
           </div>
         </div>
       </form>
