@@ -1,0 +1,78 @@
+<div class="booking">
+  <div class="booking__container container">
+    <div class="booking__inner">
+      <form class="booking__form booking-form" action="#">
+        <div class="booking-form__inner">
+          <div class="booking-form__data">
+            <h2 class="booking__header">Booking tickets</h2>
+            <h3 class="booking__subheader">Tour to Louvre</h3>
+            <div class="booking-form__row booking-form__row_columns">
+              <div class="booking-form__input-wrapper booking-form__input-wrapper_date">
+                <input class="booking-form__date-text" type="text" name="booking-date-text" placeholder="Date">
+                <button class="booking-form__arrow-btn" type="button"></button>
+                <input class="booking-form__date-input" type="date" name="booking-date">
+              </div>
+              <div class="booking-form__input-wrapper booking-form__input-wrapper_time">
+                <input class="booking-form__time-text" type="text" name="booking-time" placeholder="Time">
+                <button class="booking-form__arrow-btn" type="button"></button>
+                <input class="booking-form__time-input" type="time" name="booking-time">
+              </div>
+            </div>
+            <div class="booking-form__row">
+              <div class="booking-form__input-wrapper booking-form__input-wrapper_name">
+                <input type="text" name="booking-name" placeholder="Name">
+              </div>
+            </div>
+            <div class="booking-form__row">
+              <div class="booking-form__input-wrapper booking-form__input-wrapper_email">
+                <input type="email" name="booking-email" placeholder="E-mail">
+              </div>
+            </div>
+            <div class="booking-form__row">
+              <div class="booking-form__input-wrapper booking-form__input-wrapper_phone">
+                <input type="tel" name="booking-phone" placeholder="Phone">
+              </div>
+            </div>
+            <div class="booking-form__row">
+              <div class="booking-form__input-wrapper booking-form__input-wrapper_ticket-type">
+                <input class="booking-form__ticket-type-text" type="text" name="booking-ticket-type-text" placeholder="Ticket Type">
+                <button class="booking-form__arrow-btn" type="button"></button>  
+                <select class="booking-form__ticket-type-select" name="booking-ticket-type">
+                  <option value=""></option>
+                  <option value="permanent">Permanent exhibition</option>
+                  <option value="temporary">Temporary exhibition</option>
+                  <option value="combined">Combined Admission</option>
+                </select>
+              </div>
+            </div>
+            <div class="booking-form__row">
+              <div class="booking-form__input-wrapper booking-form__input-wrapper_tickets-amount">
+                <h3 class="booking-form__tickets-amount-header">Entry ticket</h3>
+                <div class="booking-form__tickets-amount-row">
+                  <span class="booking-form__number-title">Basic 18+ (20 €)</span>
+                  <span class="booking-form__number">
+                    <button class="booking-form__number-dec" type="button" onclick="this.nextElementSibling.stepDown()">&#8722;</button>
+                    <input class="booking-form__number-input" type="number" name="basic" min="1" max="20" value="1" readonly>
+                    <button class="booking-form__number-inc" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+                  </span>
+                </div>
+                <div class="booking-form__tickets-amount-row">
+                  <span class="booking-form__number-title">Senior 65+ (10 €)</span>
+                  <span class="booking-form__number">
+                    <button class="booking-form__number-dec" type="button" onclick="this.nextElementSibling.stepDown()">&#8722;</button>
+                    <input class="booking-form__number-input" type="number" name="senior" min="1" max="20" value="1" readonly>
+                    <button class="booking-form__number-inc" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="booking-form__overview">
+            
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

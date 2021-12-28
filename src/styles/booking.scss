@@ -1,0 +1,241 @@
+.booking {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  color: $bg-dark-color;
+  background: rgba(0, 0, 0, 0.5);
+
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $bg-light-color;
+  }
+
+  &__header {
+    padding-top: 41px;
+    margin-bottom: 15px;
+    font-family: $header-font;
+    color: $header-color;
+    font-size: 50px;
+    line-height: 55px;
+    font-weight: normal;
+    text-transform: uppercase;
+    background: no-repeat url("../assets/logo-gold.svg");
+    background-size: 85px 41px;
+  }
+
+  &__subheader {
+    width: 100%;
+    margin-bottom: 60px;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    color: $ui-color;
+
+    &::after {
+      content: "";
+      display: block;
+      height: 13px;
+      border-bottom: 3px solid $ui-color;
+    }
+  }
+}
+
+.booking-form {
+  
+  &__inner {
+    width: 970px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__data {
+    flex: 0 0 41.23%;
+  }
+
+  &__overview {
+    flex: 0 0 54.64%;
+    height: 100%;
+    border: 1px solid $bg-dark-color;
+  }
+
+  &__row {
+    width: 100%;
+    margin-bottom: 20px;
+
+    &_columns {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  
+  &__arrow-btn {
+    flex: 1 0 43px;
+    display: block;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: no-repeat url("../assets/booking/arrow.svg");
+    background-position: center center;
+    pointer-events: none;
+  }
+
+  input, select {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+
+    &::placeholder {
+      color: $bg-dark-color;
+    }
+  }
+  
+  &__date-input,
+  &__time-input,
+  &__ticket-type-select {
+    position: absolute;
+    left: 43px;
+    z-index: 1;
+    opacity: 0;
+    cursor: pointer;
+    
+    &::-webkit-calendar-picker-indicator {
+      margin: 0;
+      width: calc(100% - 43px);
+      height: 100%;
+      cursor: pointer;
+    }
+    &::-webkit-datetime-edit {
+      display: none;
+    }
+  }
+
+  &__input-wrapper {
+    position: relative;
+    overflow: hidden;
+    height: 45px;
+    padding-left: 43px;
+    background-repeat: no-repeat;
+    background-position: left 15px center;
+    border: 1px solid $bg-dark-color;
+
+    input {
+      padding-right: 15px;
+    }
+
+    &_date, &_time {
+      flex-basis: calc((100% - 20px) / 2);
+    }
+
+    &_date, &_time, &_ticket-type {
+      display: flex;
+
+      input[type="text"] {
+        flex: 1 1 auto;
+        padding-right: 0px;
+        pointer-events: none;
+      }
+    }
+
+    &_date {
+      margin-right: 20px;
+      background-image: url("../assets/booking/date.svg");
+    }
+    
+    &_time {
+      background-image: url("../assets/booking/time.svg");
+    }
+
+    &_name {
+      background-image: url("../assets/booking/name.svg");
+    }
+
+    &_email {
+      background-image: url("../assets/booking/email.svg");
+    }
+
+    &_phone {
+      background-image: url("../assets/booking/tel.svg");
+    }
+
+    &_ticket-type {
+      background-image: url("../assets/booking/ballot.svg");
+    }
+
+    &_tickets-amount {
+      padding: 10px 15px 15px;
+      height: 135px;
+      
+      input {
+        display: inline-block;
+        flex: 1 1 auto;
+        text-align: center;
+        padding: 0px;
+        
+        &::-webkit-inner-spin-button {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &__tickets-amount-header {
+    font-family: $header-font;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 20px;
+    text-transform: capitalize;
+    color: $header-color;
+    margin-bottom: 15px;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 7px;
+      border-bottom: 2px solid $ui-color;
+    }
+  }
+
+  &__tickets-amount-row {
+    height: 25px;
+    margin-bottom: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__number-title {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+  }
+
+  &__number {
+    width: 105px;
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    border: 1px solid $bg-dark-color;
+
+    &-dec, &-inc {
+      display: inline-block;
+      flex: 1 0 35px;
+      height: 100%;
+      color: $light-text-color;
+      background: $bg-dark-color;
+    }
+
+  }
+}
