@@ -1,5 +1,9 @@
 <div class="booking">
-  <div class="booking__container container">
+  <div class="booking__container">
+    <button class="booking__close-btn">
+      <span class="booking__close-btn-line"></span>
+      <span class="booking__close-btn-line"></span>
+    </button>
     <div class="booking__inner">
       <form class="booking__form booking-form" action="#" method="post">
         <div class="booking-form__inner">
@@ -38,11 +42,15 @@
                 <input class="booking-form__ticket-type-text" type="text" name="booking-ticket-type-text" placeholder="Ticket Type">
                 <button class="booking-form__arrow-btn" type="button"></button>  
                 <select class="booking-form__ticket-type-select" name="booking-ticket-type">
-                  <option value=""></option>
                   <option value="permanent">Permanent exhibition</option>
                   <option value="temporary">Temporary exhibition</option>
                   <option value="combined">Combined Admission</option>
                 </select>
+                <ul class="booking-form__ticket-type-select-options">
+                  <li data-value="permanent">Permanent exhibition</li>
+                  <li data-value="temporary">Temporary exhibition</li>
+                  <li data-value="combined">Combined Admission</li>
+                </ul>
               </div>
             </div>
             <div class="booking-form__row">

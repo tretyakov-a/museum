@@ -28,4 +28,57 @@ for (const el of inputRangeElements) {
   })
 }
 
- 
+const ticketTypeSelectOptions = document.querySelector('.booking-form__ticket-type-select-options');
+
+bookingTicketTypeSelect.addEventListener('mousedown', e => e.preventDefault());
+bookingTicketTypeSelect.addEventListener('click', e => {
+  ticketTypeSelectOptions.classList.toggle('booking-form__ticket-type-select-options_show');
+});
+
+ticketTypeSelectOptions.addEventListener('click', e => {
+  ticketTypeSelectOptions.classList.remove('booking-form__ticket-type-select-options_show');
+  console.log(e.target.dataset.value);
+  bookingTicketTypeSelect.value = e.target.dataset.value;
+  bookingTicketTypeSelect.dispatchEvent(new Event('change'));
+});
+
+function isClickOutside(e, classNames) {
+  return classNames.every(className => !e.path.find(el => {
+    return el.classList && el.classList.contains(className);
+  }));
+}
+
+const ticketFormSubmit = document.querySelector('.tickets-form__submit');
+const booking = document.querySelector('.booking');
+const bookingCloseBtn = document.querySelector('.booking__close-btn');
+
+function hideBooking() {
+  booking.classList.remove('booking_show');
+  booking.classList.add('booking_hide');
+  setTimeout(() => {
+    booking.classList.remove('booking_hide');
+  }, 400);
+}
+
+bookingCloseBtn.addEventListener('click', hideBooking);
+
+ticketFormSubmit.addEventListener('click', e => {
+  e.preventDefault();
+  e.stopPropagation();
+  booking.classList.add('booking_show');
+});
+
+
+document.addEventListener('click', e => {
+  if (isClickOutside(e, [
+    'booking-form__ticket-type-select-options', 
+    'booking-form__ticket-type-select'
+  ])) {
+    ticketTypeSelectOptions.classList.remove('booking-form__ticket-type-select-options_show');
+  }
+
+  if (isClickOutside(e, ['booking__container'])) {
+    if (booking.classList.contains('booking_show'))
+    hideBooking();
+  }
+});
