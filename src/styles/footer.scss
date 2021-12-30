@@ -9,7 +9,7 @@
 
   &__top {
     height: 265px;
-    padding-top: 87px;
+    padding-top: 85px;
     padding-bottom: 55px;
 
     .footer__container {
@@ -25,11 +25,12 @@
   }
   
   &__logo {
-    margin-right: 145px;
+    margin-right: 141px;
   }
 
   &__menu-container {
-    width: 440px;
+    max-width: 455px;
+    padding-top: 2px; //perfect pixel
   }
 
   &__menu {
@@ -103,11 +104,7 @@
     border-top: 3px solid #666666;
   }
 
-  &__github-link {
-    text-align: right;
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
+  &__school-link {
+    padding-left: 75px;
   }
-
 }
