@@ -211,3 +211,34 @@
   cursor: ew-resize;
   background: #ffffff;
 }
+
+@media (max-width: $adaptive-width-pc) {
+  .video {
+    &__header {
+      flex-basis: 100%;
+      margin-bottom: 40px;
+    }
+  
+    &__subheader {
+      display: none;
+    }
+
+    &__controls {
+      height: 60px;
+    }
+  }
+
+  .video-slider {
+    &__list {
+      height: 170px;
+    }
+  }
+}
+
+@media (max-width: $adaptive-width-tablet) {
+  
+}
+
+@media (max-width: $adaptive-width-phone) {
+  
+}

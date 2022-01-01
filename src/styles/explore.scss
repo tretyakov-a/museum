@@ -24,10 +24,8 @@ $container-gap: 60px;
       font-weight: 300;
       font-size: 22px;
       line-height: 38px;
+      margin-bottom: 25px;
 
-      &:not(:last-child) {
-        margin-bottom: 25px;
-      }
     }
   }
 }
@@ -67,4 +65,46 @@ $container-gap: 60px;
   &__after {
     position: relative;
   }
+}
+
+@media (max-width: $adaptive-width-pc) {
+  .explore {
+    &__container {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__content {
+      margin-bottom: 62px;
+
+      p {
+        font-size: 20px;
+        line-height: 38px;
+        margin-bottom: 0px;
+
+        &:nth-child(3) {
+          display: none;
+        }
+      }
+    }
+
+    &__left {
+      flex-basis: 100%;
+    }
+  
+    &__right {
+      flex: 0 1 720px;
+    }
+  }
+
+  .comparing-slider {
+  }
+}
+
+@media (max-width: $adaptive-width-tablet) {
+  
+}
+
+@media (max-width: $adaptive-width-phone) {
+  
 }

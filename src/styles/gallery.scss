@@ -4,6 +4,14 @@
   
   &__content {
     position: relative;
+    padding-top: 136.11%;
+  }
+
+  &__wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
   }
 
   &__bottom-overlay {
@@ -16,7 +24,7 @@
   }
 
   &__list {
-    height: 1960px;
+    height: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -37,4 +45,20 @@
       margin-bottom: 24px;
     }
   }
+}
+
+@media (max-width: $adaptive-width-pc) {
+  .gallery {
+    &__content {
+      padding-top: 148.37%;
+    }
+  }
+}
+
+@media (max-width: $adaptive-width-tablet) {
+  
+}
+
+@media (max-width: $adaptive-width-phone) {
+  
 }

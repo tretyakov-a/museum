@@ -16,11 +16,13 @@
 
   --header-height: 150px;
   --welcome-height: 810px;
+  --general-gap: 75px;
 }
 
 $hamburger-size: 32px;
 $container-width: 1440px;
 $container-padding: 20px;
+$general-gap: var(--general-gap);
 $header-height: var(--header-height);
 $welcome-height: var(--welcome-height);
 $animation-duration: 0.2s;
@@ -47,5 +49,14 @@ $adaptive-width-phone: 420px;
   :root {
     --header-height: 130px;
     --welcome-height: 585px;
+    --general-gap: 60px;
   }
+}
+
+@media (max-width: $adaptive-width-tablet) {
+  
+}
+
+@media (max-width: $adaptive-width-phone) {
+  
 }

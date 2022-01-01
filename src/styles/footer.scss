@@ -8,7 +8,7 @@
   letter-spacing: 2px;
 
   &__top {
-    height: 265px;
+    height: 66.04%;
     padding-top: 85px;
     padding-bottom: 55px;
 
@@ -100,11 +100,38 @@
   }
 
   &__bottom {
-    height: 127px;
+    height: 33.96%;
     border-top: 3px solid #666666;
   }
 
   &__school-link {
     padding-left: 75px;
   }
+}
+
+@media (max-width: $adaptive-width-pc) {
+  .footer {
+    height: 368px;
+
+    &__top {
+      padding-top: 60px;
+      padding-bottom: 50px;
+  
+      .footer__container {
+        align-items: stretch;
+      }
+    }
+
+    &__logo {
+      margin-right: 45px;
+    }
+  }
+}
+
+@media (max-width: $adaptive-width-tablet) {
+  
+}
+
+@media (max-width: $adaptive-width-phone) {
+  
 }

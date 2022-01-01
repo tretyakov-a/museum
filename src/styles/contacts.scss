@@ -31,5 +31,37 @@
       object-fit: cover;
     }
   }
+}
 
+@media (max-width: $adaptive-width-pc) {
+  .contacts {
+    &__title {
+      margin-bottom: 35px;
+      font-size: 24px;
+      line-height: 28px;
+    }
+  
+    &__info-row {
+      margin-bottom: 15px;
+      font-size: 20px;
+      line-height: 23px;
+    }
+
+    &__info {
+      flex: 1 1 auto;
+      margin-right: 30px;
+    }
+
+    &__map {
+      flex: 1 0 70.53%;
+    }
+  }
+}
+
+@media (max-width: $adaptive-width-tablet) {
+  
+}
+
+@media (max-width: $adaptive-width-phone) {
+  
 }

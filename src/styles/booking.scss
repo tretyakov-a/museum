@@ -622,3 +622,28 @@
     margin-top: 6px;
   }
 }
+
+@media (max-width: calc(#{$adaptive-width-pc} + 100px)) {
+  .booking {
+    &__container {
+      height: 768px;
+      padding-top: 75px;
+      align-items: flex-start;
+    }
+  }
+}
+
+@media (max-height: 768px) {
+  .booking {
+    overflow: auto;
+    align-items: stretch;
+  }
+}
+
+@media (max-width: $adaptive-width-tablet) {
+  
+}
+
+@media (max-width: $adaptive-width-phone) {
+  
+}

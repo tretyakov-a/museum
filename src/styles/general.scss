@@ -62,7 +62,7 @@ ul {
 
 .section {
   &:not(.welcome) {
-    padding: 75px 0;
+    padding: $general-gap 0;
   }
 
   &__header {
@@ -74,7 +74,7 @@ ul {
     line-height: 90px;
     letter-spacing: 5px;
     text-transform: uppercase;
-    margin-bottom: 75px;
+    margin-bottom: $general-gap;
     text-align: left;
 
     &_dark-bg {
@@ -98,4 +98,32 @@ ul {
   background: url("../pictures/parallax.jpg");
   background-size: cover;
   background-attachment: fixed;
+}
+
+@media (max-width: $adaptive-width-pc) {
+  .section {
+  
+    &__header {
+      font-size: 50px;
+      line-height: 75px;
+  
+      &_dark-bg {
+        color: $light-text-color;
+      }
+      
+      &_bottom-line {
+        &::after {
+          height: 23px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $adaptive-width-tablet) {
+  
+}
+
+@media (max-width: $adaptive-width-phone) {
+  
 }
