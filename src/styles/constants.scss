@@ -13,12 +13,16 @@
   --header-font: 'Forum', sans-serif;
 
   --font-size: 18px;
+
+  --header-height: 150px;
+  --welcome-height: 810px;
 }
 
-$hamburger-size: 50px;
+$hamburger-size: 32px;
 $container-width: 1440px;
 $container-padding: 20px;
-$header-height: 150px;
+$header-height: var(--header-height);
+$welcome-height: var(--welcome-height);
 $animation-duration: 0.2s;
 
 $bg-light-color: var(--bg-light-color);
@@ -33,3 +37,15 @@ $light-text-color: var(--light-text-color);
 $main-font: var(--main-font);
 $header-font: var(--header-font);
 $font-size: var(--font-size);
+
+$adaptive-width-pc: 1024px;
+$adaptive-width-tablet: 768px;
+$adaptive-width-phone: 420px;
+
+
+@media (max-width: $adaptive-width-pc) {
+  :root {
+    --header-height: 130px;
+    --welcome-height: 585px;
+  }
+}

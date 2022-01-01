@@ -2,21 +2,10 @@
   background: $bg-dark-color;
   height: $header-height;
 
-  &__container,
-  &__menu {
+  &__container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 100%;
-  }
-
-  &__menu {
-    font-size: 22px;
-    line-height: 26px;
-    letter-spacing: 2px;
-
-    &-item:not(:last-child) {
-      margin-right: 53px;
-    }
   }
 }

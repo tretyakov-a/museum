@@ -1,0 +1,3 @@
+@mixin anim($name, $fn: ease-in, $duration: $animation-duration) {
+  animation: $name $duration $fn forwards;
+}

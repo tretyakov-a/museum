@@ -1,0 +1,276 @@
+.menu-hamburger {
+  $vertical-padding: 7px;
+  $line-height: 2px;
+  $cross-line-size: $hamburger-size;
+
+  display: none;
+  width: $hamburger-size;
+  height: $hamburger-size;
+  padding: $vertical-padding 0;
+  cursor: pointer;
+  justify-content: space-between;
+  flex-direction: column;
+  z-index: 10;
+  position: relative;
+  background: transparent;
+  border: none;
+  outline: none;
+
+  &__line {
+    width: $hamburger-size;
+    height: $line-height;
+    background: $bg-light-color;
+    transition: 0.2s;
+  }
+
+  @keyframes rotateClockwiseReverse {
+    from {
+      transform: rotate(45deg);
+      top: $hamburger-size / 2;
+    }
+    to {
+      transform: rotate(0deg);
+      top: $vertical-padding;
+    }
+  }
+
+  @keyframes rotateAntiClockwiseReverse {
+    from {
+      transform: rotate(-45deg);
+      top: $hamburger-size / 2;
+    }
+    to {
+      transform: rotate(0deg);
+      top: $hamburger-size - $vertical-padding - $line-height;
+    }
+  }
+
+  @keyframes rotateClockwise {
+    from {
+      transform: rotate(0deg);
+      top: $vertical-padding;
+    }
+    to {
+      transform: rotate(45deg);
+      top: $hamburger-size / 2;
+    }
+  }
+
+  @keyframes rotateAntiClockwise {
+    from {
+      transform: rotate(0deg);
+      top: $hamburger-size - $vertical-padding - $line-height;
+    }
+    to {
+      transform: rotate(-45deg);
+      top: $hamburger-size / 2;
+    }
+  }
+
+  @keyframes lineScaleIn {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(100%);
+    }
+  }
+
+  @keyframes lineScaleOut {
+    from {
+      transform: scaleX(100%);
+    }
+    to {
+      transform: scaleX(0);
+    }
+  }
+}
+
+.menu-hamburger:hover {
+  .menu-hamburger__line {
+    background: $ui-color;
+  }
+}
+
+.header-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+
+  &__item-link {
+    display: block;
+    height: 100%;
+    font-size: 22px;
+    line-height: 26px;
+    letter-spacing: 2px;
+  }
+
+  &__item:not(:last-child) {
+    margin-right: 53px;
+  }
+
+  @keyframes menuSlideIn {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0%);
+      opacity: 1;
+    }
+  }
+
+  @keyframes menuSlideOut {
+    from {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+  }
+}
+
+@media (max-width: $adaptive-width-pc) {
+  .header {
+    &__nav {
+
+      &_show {
+
+        .header-menu {
+          display: flex;
+          @include anim(menuSlideIn);
+        }
+
+        .menu-hamburger {
+          display: block;
+
+          &__line:nth-child(1) {
+            @include anim(rotateClockwise);
+          }
+    
+          &__line:nth-child(2) {
+            top: $hamburger-size / 2;
+            @include anim(lineScaleOut);
+          }
+    
+          &__line:nth-child(3) {
+            @include anim(rotateAntiClockwise);
+          }
+
+          &__line {
+            position: absolute;
+            right: 0;
+            background: $bg-light-color;
+          }
+        }
+      }
+    }
+  }
+
+  .menu-hamburger {
+    display: flex;
+
+    &_hide {
+      display: block;
+
+      .menu-hamburger {
+        &__line {
+          position: absolute;
+          right: 0;
+          background: $bg-light-color;
+        }
+
+        &__line:nth-child(1) {
+          @include anim(rotateClockwiseReverse);
+        }
+  
+        &__line:nth-child(2) {
+          top: $hamburger-size / 2;
+          @include anim(lineScaleIn);
+        }
+  
+        &__line:nth-child(3) {
+          @include anim(rotateAntiClockwiseReverse);
+        }
+      }
+    }
+  }
+
+  .header-menu {
+    display: none;
+    position: absolute;
+    z-index: 3;
+    top: $header-height;
+    left: 0;
+    transform: translateX(-100%);
+    width: 300px;
+    height: $welcome-height;
+    padding: 35px 55px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    background: $bg-dark-color;
+    
+    &__item-link {
+      font-size: 20px;
+      line-height: 23px;
+      padding-right: 20px;
+      position: relative;
+
+      &::after {
+        content: "";
+        background: no-repeat url("../assets/menu-arrow.svg");
+        background-position: center center;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 12px;
+        height: 100%;
+      }
+
+      &:hover::after {
+        filter: invert(55%) sepia(29%) saturate(387%) hue-rotate(356deg) brightness(150%) contrast(91%);
+      }
+    }
+
+    &__item {
+      width: 122px;
+      margin-bottom: 25px;
+    }
+
+    &_hide {
+      display: flex;
+      opacity: 1;
+      @include anim(menuSlideOut);
+    }
+  }
+  
+}
+
+@media (max-width: $adaptive-width-tablet) {
+  .header {
+    &__container {
+      padding: 0 $container-padding;
+    }
+
+    &__nav_show {
+      .menu-hamburger {
+        right: 20px;
+      }
+    }
+  }
+  .menu-hamburger_hide {
+    right: 20px;
+  }
+
+  .header-menu {
+    
+  }
+}
+
+@media (max-width: $adaptive-width-phone) {
+
+}

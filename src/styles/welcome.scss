@@ -1,5 +1,5 @@
 .welcome {
-  height: 810px;
+  height: $welcome-height;
   background: $bg-dark-color;
   color: $header-color-dark-bg;
 
@@ -14,6 +14,7 @@
     top: 0;
     height: 100%;
     width: 1000px;
+    padding-bottom: 60px;
     z-index: 1;
   }
 
@@ -34,7 +35,7 @@
   }
 
   &__subtitle {
-    margin-bottom: 75px;
+    margin-bottom: 50px;
     font-size: 28px;
     line-height: 33px;
     letter-spacing: 2px;
@@ -62,7 +63,6 @@
 }
 
 .welcome-slider {
-
   &__overlay {
     position: absolute;
     width: 100%;
@@ -70,18 +70,25 @@
     background: linear-gradient(90deg, $bg-dark-color 0%, rgba(0, 0, 0, 0.5) 16%, rgba(0, 0, 0, 0) 31%);
     z-index: 2;
   }
+  
+  &__controls-wrapper {
+    position: absolute;
+    z-index: 3;
+    right: 0;
+    bottom: 0;
+    width: 600px;
+    height: 120px;
+    background: $bg-dark-color;
+  }
 
   &__controls {
     position: absolute;
     right: 0;
-    bottom: 0;
-    height: 120px;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 75px;
-    background: $bg-dark-color;
-    z-index: 3;
+    padding: 0 74px;
   }
 
   &__counter {
@@ -142,5 +149,48 @@
     position: relative;
     overflow: hidden;
     display: flex;
+    height: 100%;
+
+    li {
+      display: flex;
+
+      img {
+        display: block;
+        height: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: $adaptive-width-pc) {
+  .welcome {
+    &__container {
+      padding-top: 50px;
+    }
+
+    &__slider {
+      width: 700px;
+    }
+
+    &__title {
+      font-size: 50px;
+    }
+
+    &__subtitle {
+      font-size: 24px;
+      line-height: 28px;
+    }
+
+    &__discover-btn {
+      height: 60px;
+      font-size: 20px;
+      line-height: 23px;
+    }
+  }
+
+  .welcome-slider {
+    &__controls-wrapper {
+      width: 100%;
+    }
   }
 }
