@@ -1,5 +1,5 @@
 const menuHamburgerClass = 'menu-hamburger';
-const headerMenuClass = 'header-menu';
+const headerMenuClass = 'header__menu-container';
 const headerNavClass = 'header__nav';
 
 const hamburger = document.querySelector(`.${menuHamburgerClass}`);
@@ -19,7 +19,9 @@ function handleDocumentClick(e) {
   const isClickOnLink = e.path.find(el => el.classList && el.classList.contains(`${headerMenuClass}__item-link`));
   
   if (isClickOnCloseBtn && !isShowed) {
-    welcomeInner.style.display = 'none';
+    if (window.innerWidth > 768) {
+      welcomeInner.style.display = 'none';
+    }
     headerNav.classList.add(headerNavShowModificator);
   }
 
@@ -29,7 +31,9 @@ function handleDocumentClick(e) {
 }
 
 function hide() {
-  welcomeInner.style.display = 'block';
+  if (window.innerWidth > 768) {
+    welcomeInner.style.display = 'block';
+  }
   headerNav.classList.remove(headerNavShowModificator);
   hamburger.classList.add(humburgerHideModificator);
   headerMenu.classList.add(hideModificator);

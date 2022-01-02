@@ -126,5 +126,32 @@ $horizontal-gap: 60px;
     &__img {
       height: 180px;
     }
+
+    &__title {
+      font-size: 22px;
+      line-height: 24px;
+
+      &::after {
+        width: 53.57%;
+      }
+    }
+
+    &__subtitle {
+      font-size: 18px;
+      line-height: 21px;
+    }
+  }
+}
+
+@media (max-width: $adaptive-width-phone) {
+  &__title {
+    font-size: 18px;
+    line-height: 20px;
+    letter-spacing: 5px;
+  }
+
+  &__subtitle {
+    font-size: 16px;
+    line-height: 19px;
   }
 }

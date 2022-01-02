@@ -17,6 +17,7 @@
   --header-height: 150px;
   --welcome-height: 810px;
   --general-gap: 75px;
+  --video-controls-height: 85px;
 }
 
 $hamburger-size: 32px;
@@ -25,6 +26,8 @@ $container-padding: 20px;
 $general-gap: var(--general-gap);
 $header-height: var(--header-height);
 $welcome-height: var(--welcome-height);
+$video-controls-height: var(--video-controls-height);
+
 $animation-duration: 0.2s;
 
 $bg-light-color: var(--bg-light-color);
@@ -50,13 +53,22 @@ $adaptive-width-phone: 420px;
     --header-height: 130px;
     --welcome-height: 585px;
     --general-gap: 60px;
+    --video-controls-height: 60px;
   }
 }
 
 @media (max-width: $adaptive-width-tablet) {
-  
+  :root {
+    --header-height: 110px;
+    --welcome-height: auto;
+    --general-gap: 40px;
+    --video-controls-height: 53px;
+  }
 }
 
 @media (max-width: $adaptive-width-phone) {
-  
+  :root {
+    --header-height: 90px;
+    --video-controls-height: 50px;
+  }
 }

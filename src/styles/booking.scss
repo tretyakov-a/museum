@@ -11,6 +11,7 @@
   color: $bg-dark-color;
   background: none;
   transform: translateX(100%);
+  overflow: auto;
 
   $delay: 0.4s;
 
@@ -83,13 +84,19 @@
 
   &__container {
     position: relative;
-    height: 745px;
+    min-height: 845px;
+    height: fit-content;
     flex: 0 1 $container-width;
     max-width: $container-width;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 30px;
     background: $bg-light-color;
+  }
+
+  &__inner {
+    flex: 0 1 970px;
   }
 
   &__header {
@@ -123,21 +130,20 @@
 }
 
 .booking-form {
+  width: 100%;
+
   &__inner {
-    width: 970px;
-    height: 665px;
     display: flex;
     justify-content: space-between;
   }
 
   &__data {
-    flex: 0 0 41.23%;
+    flex: 0 1 400px;
+    margin-right: 40px;
   }
 
   &__overview {
-    flex: 0 0 54.64%;
-    height: 100%;
-    border: 1px solid $bg-dark-color;
+    flex: 0 1 530px;
   }
 
   &__row {
@@ -355,9 +361,10 @@
 
   &__overview {
     height: 100%;
-    padding: 25px 30px;
     display: flex;
     flex-direction: column;
+    padding: 25px 30px;
+    border: 1px solid $bg-dark-color;
 
     &-header {
       display: flex;
@@ -626,16 +633,44 @@
 @media (max-width: calc(#{$adaptive-width-pc} + 100px)) {
   .booking {
     &__container {
-      height: 768px;
+      // height: 768px;
       padding-top: 75px;
       align-items: flex-start;
     }
   }
 }
 
-@media (max-height: 768px) {
+@media (max-width: 850px) {
   .booking {
     overflow: auto;
+    align-items: flex-start;
+    
+    &__container {
+      flex: 0 1 590px;
+      max-width: 590px;
+    }
+  }
+
+  .booking-form {
+    &__inner {
+      display: flex;
+      flex-direction: column;
+      max-width: 530px;
+    }
+
+    &__data {
+      flex: 0 1 100%;
+      margin-right: 0px;
+    }
+
+    &__overview {
+      flex: 0 1 100%;
+    }
+  }
+}
+
+@media (max-height: 768px) {
+  .booking {
     align-items: stretch;
   }
 }

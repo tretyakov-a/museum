@@ -129,6 +129,7 @@
     height: 16px;
     background-position: center center;
     background-repeat: no-repeat;
+    background-size: contain;
     transition: $animation-duration;
 
     &:hover {
@@ -145,11 +146,19 @@
     background-image: url("../assets/right.svg");
   }
 
-  &__list {
+  &__list-container {
     position: relative;
+    padding-top: 75%;
+  }
+
+  &__list {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     overflow: hidden;
     display: flex;
-    height: 100%;
 
     li {
       display: flex;
@@ -173,7 +182,8 @@
     }
 
     &__title {
-      font-size: 50px;
+      font-size: 40px;
+      line-height: 60px;
     }
 
     &__subtitle {
@@ -191,6 +201,133 @@
   .welcome-slider {
     &__controls-wrapper {
       width: 100%;
+    }
+  }
+}
+
+@media (max-width: $adaptive-width-tablet) {
+  .welcome {
+    &__container {
+      padding-top: 0px;
+    }
+
+    &__inner {
+      width: 100%;
+      text-align: center;
+    }
+
+    &__slider {
+      width: 100%;
+      position: static;
+    }
+
+    &__title {
+      font-size: 50px;
+    }
+
+    &__subtitle {
+      font-size: 20px;
+      line-height: 20px;
+    }
+
+    &__discover-btn {
+      display: none;
+    }
+  }
+
+  .welcome-slider {
+    padding-bottom: 0px;
+    height: auto;
+    
+    &__overlay {
+      display: none;
+    }
+
+    &__controls-wrapper {
+      position: static;
+      height: 100px;
+    }
+
+    &__controls {
+      position: static;
+      justify-content: center;
+      padding: 0px;
+    }
+
+    &__counter {
+      font-size: 20px;
+      margin-right: 45px;
+    }
+  
+    &__dots-group {
+      margin-right: 45px;
+    }
+  
+    &__dot {
+      width: 12px;
+      height: 12px;
+  
+      &:not(:last-child) {
+        margin-right: 25px;
+      }
+    }
+  
+    &__prev-btn,
+    &__next-btn {
+      width: 30px;
+      height: 8px;
+    }
+  
+    &__prev-btn {
+      margin-right: 20px;
+    }
+  }
+}
+
+@media (max-width: $adaptive-width-phone) {
+  .welcome {
+    &__container {
+      padding-top: 5px;
+    }
+
+    &__title {
+      font-size: 28px;
+      line-height: 40px;
+    }
+
+    &__subtitle {
+      font-size: 16px;
+      line-height: 19px;
+    }
+  }
+
+  .welcome-slider {
+    &__counter {
+      font-size: 16px;
+      margin-right: 25px;
+    }
+  
+    &__dots-group {
+      margin-right: 25px;
+    }
+  
+    &__dot {
+      width: 7px;
+      height: 7px;
+  
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+    }
+  
+    &__prev-btn,
+    &__next-btn {
+      width: 20px;
+      height: 8px;
+    }
+  
+    &__prev-btn {
+      margin-right: 15px;
     }
   }
 }

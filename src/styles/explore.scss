@@ -36,11 +36,13 @@ $container-gap: 60px;
 
   &__control {
     position: absolute;
-    right: -23px;
+    right: -20px;
     top: 0;
     width: 40px;
     height: 100%;
     background: no-repeat url("../assets/explore-slider.svg");
+    background-size: cover;
+    background-position: center center;
     z-index: 2;
     cursor: pointer;
     transition: $animation-duration;
@@ -93,7 +95,7 @@ $container-gap: 60px;
     }
   
     &__right {
-      flex: 0 1 720px;
+      flex: 0 1 auto;
     }
   }
 
@@ -102,7 +104,16 @@ $container-gap: 60px;
 }
 
 @media (max-width: $adaptive-width-tablet) {
-  
+  .explore {
+
+    &__left {
+      width: 100%;
+    }
+
+    &__content {
+      display: none;
+    }
+  }
 }
 
 @media (max-width: $adaptive-width-phone) {

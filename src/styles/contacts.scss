@@ -59,7 +59,32 @@
 }
 
 @media (max-width: $adaptive-width-tablet) {
+  .contacts {
+
+    &__content {
+      flex-direction: column;
+    }
+
+    &__title {
+      margin-bottom: 40px;
+      font-size: 20px;
+      line-height: 23px;
+    }
   
+    &__info-row {
+      font-size: 18px;
+      line-height: 21px;
+    }
+
+    &__info {
+      flex: 1 1 100%;
+      margin-bottom: 40px;
+    }
+
+    &__map {
+      flex: 1 1 100%;
+    }
+  }
 }
 
 @media (max-width: $adaptive-width-phone) {

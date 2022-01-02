@@ -9,26 +9,60 @@
         <span class="menu-hamburger__line"></span>
         <span class="menu-hamburger__line"></span>
       </button>
-      <ul class="header__menu header-menu">
-        <li class="header-menu__item">
-          <a class="header-menu__item-link" href="#visiting">Visiting</a>
-        </li>
-        <li class="header-menu__item">
-          <a class="header-menu__item-link" href="#explore">Expolore</a>
-        </li>
-        <li class="header-menu__item">
-          <a class="header-menu__item-link" href="#video">Video</a>
-        </li>
-        <li class="header-menu__item">
-          <a class="header-menu__item-link" href="#gallery">Gallery</a>
-        </li>
-        <li class="header-menu__item">
-          <a class="header-menu__item-link" href="#tickets">Tickets</a>
-        </li>
-        <li class="header-menu__item">
-          <a class="header-menu__item-link" href="#contacts">Contacts</a>
-        </li>
-      </ul>
+      <div class="header__menu-container">
+        <ul class="header__menu header-menu">
+          <li class="header-menu__item">
+            <a class="header-menu__item-link" href="#visiting">Visiting</a>
+          </li>
+          <li class="header-menu__item">
+            <a class="header-menu__item-link" href="#explore">Expolore</a>
+          </li>
+          <li class="header-menu__item">
+            <a class="header-menu__item-link" href="#video">Video</a>
+          </li>
+          <li class="header-menu__item">
+            <a class="header-menu__item-link" href="#gallery">Gallery</a>
+          </li>
+          <li class="header-menu__item">
+            <a class="header-menu__item-link" href="#tickets">Tickets</a>
+          </li>
+          <li class="header-menu__item">
+            <a class="header-menu__item-link" href="#contacts">Contacts</a>
+          </li>
+        </ul>
+        <div class="header__menu-gallery-container">
+          <ul class="header__menu-gallery">
+            <li class="header__menu-gallery-item">
+              <img src="<%- require('../pictures/header-menu/top.jpg') %>" alt="image1">
+            </li>
+            <li class="header__menu-gallery-item">
+              <img src="<%- require('../pictures/header-menu/bottom1.jpg') %>" alt="image2">
+            </li>
+            <li class="header__menu-gallery-item">
+              <img src="<%- require('../pictures/header-menu/bottom2.jpg') %>" alt="image3">
+            </li>
+          </ul>
+        </div>
+        <div class="header__menu-socials-container">
+          <ul class="header__menu-socials socials">
+            <li class="socials__item">
+              <a class="socials__link socials__link_youtube" href="#" target="_blank"></a>
+            </li>
+            <li class="socials__item">
+              <a class="socials__link socials__link_instagram" href="#" target="_blank"></a>
+            </li>
+            <li class="socials__item">
+              <a class="socials__link socials__link_facebook" href="#" target="_blank"></a>
+            </li>
+            <li class="socials__item">
+              <a class="socials__link socials__link_twitter" href="#" target="_blank"></a>
+            </li>
+            <li class="socials__item">
+              <a class="socials__link socials__link_pinterest" href="#" target="_blank"></a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </nav>
   </div>
 </header>

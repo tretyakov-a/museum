@@ -100,6 +100,46 @@ ul {
   background-attachment: fixed;
 }
 
+.socials {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  &__item:not(:last-child) {
+    margin-right: 5px;
+  }
+
+  &__link {
+    display: block;
+    width: 48px;
+    height: 48px;
+    border: 1px solid #666666;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    &:hover {
+      filter: invert(55%) sepia(29%) saturate(387%) hue-rotate(356deg) brightness(150%) contrast(91%);
+    }
+
+    &_youtube {
+      background-image: url("../assets/socials/youtube.svg");
+    }
+    &_instagram {
+      background-image: url("../assets/socials/instagram.svg");
+    }
+    &_facebook {
+      background-image: url("../assets/socials/facebook.svg");
+    }
+    &_twitter {
+      background-image: url("../assets/socials/twitter.svg");
+    }
+    &_pinterest {
+      background-image: url("../assets/socials/pinterest.svg");
+    }
+  }
+}
+
 @media (max-width: $adaptive-width-pc) {
   .section {
   
@@ -107,10 +147,6 @@ ul {
       font-size: 50px;
       line-height: 75px;
   
-      &_dark-bg {
-        color: $light-text-color;
-      }
-      
       &_bottom-line {
         &::after {
           height: 23px;
@@ -121,9 +157,35 @@ ul {
 }
 
 @media (max-width: $adaptive-width-tablet) {
+  .section {
   
+    &__header {
+      font-size: 40px;
+      line-height: 60px;
+    }
+  }
+
+  .parallax {
+    height: 300px;
+  }
+
 }
 
 @media (max-width: $adaptive-width-phone) {
+  .section {
   
+    &__header {
+      font-size: 28px;
+      line-height: 40px;
+    }
+  }
+
+  .logo {
+    font-size: 16px;
+    line-height: 18px;
+    width: 133px;
+    height: 20px;
+    padding-left: 54px;
+    background-size: 29px 16px;
+  }
 }

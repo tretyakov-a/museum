@@ -11,8 +11,10 @@
 
     <div class="video__content section__content">
       <div class="video__player">
-        <div class="video__player-play-wrapper">
-          <div class="video__player-play"></div>
+        <div class="video__player-play-container">
+          <div class="video__player-play-wrapper">
+            <button class="video__player-play"></button>
+          </div>
         </div>
         <img class="video__img" src="<%- require('../pictures/video/video-img.jpg') %>" alt="video static placeholder">
         <div class="video__controls">
@@ -26,26 +28,41 @@
     </div>
 
     <div class="video__slider video-slider">
-      <ul class="video-slider__list">
-        <li class="video-slider__item">
-          <a href="#video">
-            <div class="video-slider__yt-btn"></div>
-            <img src="<%- require('../pictures/video/poster0.jpg') %>" alt="video poster">
-          </a>
-        </li>
-        <li class="video-slider__item">
-          <a href="#video">
-            <div class="video-slider__yt-btn"></div>
-            <img src="<%- require('../pictures/video/poster1.jpg') %>" alt="video poster">
-          </a>
-        </li>
-        <li class="video-slider__item">
-          <a href="#video">
-            <div class="video-slider__yt-btn"></div>
-            <img src="<%- require('../pictures/video/poster2.jpg') %>" alt="video poster">
-          </a>
-        </li>
-      </ul>
+      <div class="video-slider__list-container">
+        <ul class="video-slider__list">
+          <li class="video-slider__item">
+            <a href="#video">
+              <div class="video-slider__yt-btn"></div>
+              <img src="<%- require('../pictures/video/poster0.jpg') %>" alt="video poster">
+            </a>
+          </li>
+          <li class="video-slider__item">
+            <a href="#video">
+              <div class="video-slider__yt-btn"></div>
+              <img src="<%- require('../pictures/video/poster1.jpg') %>" alt="video poster">
+            </a>
+          </li>
+          <li class="video-slider__item">
+            <a href="#video">
+              <div class="video-slider__yt-btn"></div>
+              <img src="<%- require('../pictures/video/poster2.jpg') %>" alt="video poster">
+            </a>
+          </li>
+          <li class="video-slider__item">
+            <a href="#video">
+              <div class="video-slider__yt-btn"></div>
+              <img src="<%- require('../pictures/video/poster3.jpg') %>" alt="video poster">
+            </a>
+          </li>
+          <li class="video-slider__item">
+            <a href="#video">
+              <div class="video-slider__yt-btn"></div>
+              <img src="<%- require('../pictures/video/poster4.jpg') %>" alt="video poster">
+            </a>
+          </li>
+
+        </ul>
+      </div>
       <div class="video-slider__controls">
         <div class="video-slider__controls-wrapper">
           <button class="video-slider__controls-prev"></button>

@@ -7,6 +7,8 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const RemovePlugin = require("remove-files-webpack-plugin");
 
+const tours = require("./src/js/tours");
+
 module.exports = (env) => {
   const { mode = 'development' } = env;
 
@@ -22,6 +24,16 @@ module.exports = (env) => {
     'css-loader'
   ];
   
+  const tourPageHhtmlWebpackPlugins = tours.map((tour, i) => {
+    return new HtmlWebpackPlugin({
+      minify: false,
+      template: './templates/tour.ejs',
+      filename: `tours/tour${i || ''}.html`,
+      inject: false,
+      tour,
+    });
+  });
+
   const getPlugins = () => {
     const plugins = [
       new CleanWebpackPlugin(),
@@ -30,12 +42,9 @@ module.exports = (env) => {
         template: './index.ejs',
         filename: 'index.html'
       }),
+      ...tourPageHhtmlWebpackPlugins,
       new CopyPlugin({
         patterns: [
-          {
-            from: path.resolve(__dirname, 'src/tours/*'),
-            to: path.resolve(__dirname, 'dist'),
-          },
           {
             from: path.resolve(__dirname, 'src/assets/favicon.ico'),
             to: path.resolve(__dirname, 'dist/tours'),
