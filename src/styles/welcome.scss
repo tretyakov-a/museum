@@ -22,6 +22,7 @@
     position: relative;
     width: 598px;
     z-index: 2;
+    pointer-events: none;
   }
 
   &__title {
@@ -47,6 +48,7 @@
     justify-content: center;
     width: 360px;
     height: 75px;
+    pointer-events: all;
     border-radius: 10px;
     background: $ui-color;
     font-weight: 300;
@@ -69,6 +71,7 @@
     height: 100%;
     background: linear-gradient(90deg, $bg-dark-color 0%, rgba(0, 0, 0, 0.5) 16%, rgba(0, 0, 0, 0) 31%);
     z-index: 2;
+    pointer-events: none;
   }
   
   &__controls-wrapper {
@@ -121,6 +124,10 @@
     &:hover {
       background: $header-color;
     }
+
+    &:active {
+      background: $ui-color;
+    }
   }
 
   &__prev-btn,
@@ -132,23 +139,36 @@
     background-size: contain;
     transition: $animation-duration;
 
-    &:hover {
-      filter: invert(55%) sepia(29%) saturate(387%) hue-rotate(356deg) brightness(150%) contrast(91%);
+    svg {
+      display: block;
+      width: 100%;
+      object-fit: contain;
+      transition: $animation-duration;
+      fill: $bg-light-color;
+    }
+
+    &:hover svg {
+      fill: $header-color;
+    }
+
+    &:active svg {
+      fill: $ui-color;
     }
   }
 
   &__prev-btn {
     margin-right: 20px;
-    background-image: url("../assets/left.svg");
+    // background-image: url("../assets/left.svg");
   }
 
   &__next-btn {
-    background-image: url("../assets/right.svg");
+    // background-image: url("../assets/right.svg");
   }
 
   &__list-container {
     position: relative;
     padding-top: 75%;
+    overflow: hidden;
   }
 
   &__list {
@@ -159,6 +179,7 @@
     bottom: 0;
     overflow: hidden;
     display: flex;
+    // transition: 0.4s ease-in;
 
     li {
       display: flex;
