@@ -55,6 +55,7 @@ $container-gap: 60px;
   &__before,
   &__after {
     width: 100%;
+    pointer-events: none;
   }
 
   &__before {

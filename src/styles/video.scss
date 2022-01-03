@@ -126,13 +126,15 @@
     top: 0;
     left: 0;
     bottom: 0;
+    width: 100%;
     display: flex;
-    justify-content: stretch;
+    justify-content: flex-start;
     align-items: center;
   }
 
   &__item {
-    flex: 1 0 calc((100% - 2 * 42px) / 3);
+    flex: 0 0 calc((100% - 2 * 42px) / 3);
+
     height: 100%;
 
     &:not(:last-child) {

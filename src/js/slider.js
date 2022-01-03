@@ -15,23 +15,35 @@ export default class CustomSlider {
   constructor(slider, options = {}) {
     this.sliderContainer = slider;
     this.sliderContent = this.sliderContainer.querySelector(SELECTORS.content);
-    this.slides = this.sliderContainer.querySelectorAll(SELECTORS.slide);
+    this.slides = [...this.sliderContainer.querySelectorAll(SELECTORS.slide)];
     this.dots = this.sliderContainer.querySelectorAll(SELECTORS.dot);
     this.counterCurrent = this.sliderContainer.querySelector(SELECTORS.counterCurrent);
     this.slidesNumber = this.slides.length;
 
-    this.currentSlideIndex = 0;
+    this.currentSlideIndex = -1;
     this.touchstartX = 0;
     this.touchendX = 0;
     this.animationDuration = options.animationDuration || 800;
+    this.slidesToShow = options.slidesToShow || 1;
+    this.rightMargin = options.rightMargin || 0;
+    this.onChange = options.onChange || null;
     
-    const firstSlide = this.slides[0].cloneNode(true);
-    firstSlide.dataset.index = -1;
-    const lastSlide = this.slides[this.slidesNumber - 1].cloneNode(true);
-    lastSlide.dataset.index = -1;
-  
-    this.sliderContent.insertBefore(lastSlide, this.slides[0]);
-    this.sliderContent.append(firstSlide);
+    if (this.slidesNumber <= this.slidesToShow) {
+      return;
+    }
+
+    const firstSlides = [];
+    for (let i = 0; i < this.slidesToShow; i += 1) {
+      firstSlides.push(this.slides[i].cloneNode(true));
+    }
+    
+    const lastSlides = [];
+    for (let i = 0; i < this.slidesToShow; i += 1) {
+      lastSlides.push(this.slides[this.slidesNumber - 1 - i].cloneNode(true));
+    }
+    
+    this.insertSlidesBefore(lastSlides);
+    this.appendSlides(firstSlides);
 
     this.setCounter(this.sliderContainer.querySelector(SELECTORS.counterTotal), this.slidesNumber);
   
@@ -41,25 +53,45 @@ export default class CustomSlider {
     this.sliderContent.addEventListener('touchstart', this.handleTouchStart);
     this.sliderContent.addEventListener('touchend', this.handleTouchEnd);
     window.addEventListener('resize', throttle(100, this.handleWindowResize));
-  
+    
+    this.changeCurrentIndex = debounce(this.animationDuration, this.changeCurrentIndex);
+
     setTimeout(() => {
       this.changeCurrentIndex(0);
-      setTimeout(this.addTransition)
+      setTimeout(this.addTransition);
     });
+  }
 
-    this.changeCurrentIndex = debounce(this.animationDuration, this.changeCurrentIndex);
+  insertSlidesBefore = slides => {
+    for (let i = slides.length - 1; i >= 0; i -= 1) {
+      this.sliderContent.insertBefore(slides[i], this.slides[0]);
+    }
+  }
+
+  appendSlides = slides => {
+    slides.forEach(slide => {
+      this.sliderContent.append(slide);
+    })
   }
 
   setActiveDot = () => {
-    for (const dot of this.dots) {
-      dot.classList.remove('welcome-slider__dot_active');
+    if (!this.dots) {
+      return;
     }
-    this.dots[this.currentSlideIndex].classList.add('welcome-slider__dot_active');
+    const className = this.dots[0].classList[0];
+    const activeModificator = `${className}_active`;
+    for (const dot of this.dots) {
+      dot.classList.remove(activeModificator);
+    }
+    this.dots[this.currentSlideIndex].classList.add(activeModificator);
   }
   
-  setCounter = (counterEl, n = this.currentSlideIndex + 1) => {
+  setCounter = (counterElement, n = this.currentSlideIndex + 1) => {
+    if (!counterElement) {
+      return;
+    }
     const text = n < 10 ? '0' + n : n;
-    counterEl.textContent = text;
+    counterElement.textContent = text;
   }
   
   changeCurrentIndex = (newIndex, edge = null) => {
@@ -70,6 +102,14 @@ export default class CustomSlider {
     this.setActiveDot();
     this.setCounter(this.counterCurrent);
     this.moveSlider(edge);
+
+    // if (this.onChange) {
+    //   this.onChange.call(null, this.currentSlideIndex);
+    // }
+
+    const event = new Event('slideChange');
+    event.currentSlide = this.currentSlideIndex;
+    this.sliderContainer.dispatchEvent(event);
   }
   
   processEdgeSlideMove = (offset, offsetEdge) => {
@@ -79,20 +119,21 @@ export default class CustomSlider {
         this.removeTransition();
         this.sliderContent.style.left = `-${offset}px`;
         setTimeout(this.addTransition, 20);
-      }, this.animationDuration);
+      }, this.animationDuration - 20);
     });
   }
   
   moveSlider = (edge = null) => {
     const slide = this.slides[this.currentSlideIndex];
     const offset = slide.offsetLeft;
-  
+    
     if (edge && (edge.right || edge.left)) {
       const edgeSlide = edge.right ? this.slides[this.slidesNumber - 1] : this.slides[0];
-      const offsetEdge = edgeSlide.offsetLeft + (edge.right ? edgeSlide.offsetWidth : -edgeSlide.offsetWidth);
+      const width = edgeSlide.offsetWidth + this.rightMargin;
+      const offsetEdge = edgeSlide.offsetLeft + (edge.right ? width : -width);
       return this.processEdgeSlideMove(offset, offsetEdge);
     }
-  
+    
     this.sliderContent.style.left = `-${offset}px`;
   }
   
@@ -157,7 +198,7 @@ export default class CustomSlider {
   }
   
   addTransition = () => {
-    this.sliderContent.style.transition = `${this.animationDuration}ms ease-in`;
+    this.sliderContent.style.transition = `${this.animationDuration}ms ease-in-out`;
   }
   
   removeTransition = () => {
