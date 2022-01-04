@@ -31,18 +31,27 @@
     overflow: hidden;
   }
 
+  &__item {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    margin-bottom: 24px;
+
+    transform: translateY(100px);
+    opacity: 0;
+    transition: 0.6s all ease-in;
+
+    &_active {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }
+
   &__column {
     flex-basis: calc((100% - 2 * 36px) / 3);
 
     &:nth-child(1), &:nth-child(3) {
       margin-top: 50px;
-    }
-
-    img {
-      display: block;
-      width: 100%;
-      object-fit: cover;
-      margin-bottom: 24px;
     }
   }
 }
