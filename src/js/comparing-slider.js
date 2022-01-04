@@ -5,7 +5,7 @@ const before = document.querySelector('.comparing-slider__before-container');
 
 let sliderMouseDown = false;
 
-function handleSliderMove(clientX) {
+function moveSlider(clientX) {
   const { x: afterX, width: afterWidth } = after.getBoundingClientRect();
   const cx = clientX || afterX + afterWidth / 2;
   const sliderX = cx < afterX ? 0 : (cx > afterX + afterWidth ? afterWidth : cx - afterX);
@@ -19,21 +19,27 @@ function handleSliderMove(clientX) {
 
 function handleDocumentMouseMove(e) {
   if (sliderMouseDown) {
-    handleSliderMove(e.clientX);
+    moveSlider(e.clientX);
   }
 }
 
 function handleDocumentMouseUp() {
   if (sliderMouseDown) {
     sliderMouseDown = false;
+    slider.classList.remove('comparing-slider__control_active');
   }
 }
 
+function handleSliderMouseDown() {
+  sliderMouseDown = true;
+  slider.classList.add('comparing-slider__control_active');
+}
+
 export default function init() {
-  slider.addEventListener('mousedown', () => { sliderMouseDown = true; });
+  slider.addEventListener('mousedown', handleSliderMouseDown);
 
   document.addEventListener('mousemove', handleDocumentMouseMove);
-  document.addEventListener('mouseup', handleDocumentMouseUp);;
+  document.addEventListener('mouseup', handleDocumentMouseUp);
   
-  handleSliderMove();
+  moveSlider();
 }

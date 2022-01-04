@@ -38,13 +38,10 @@ $container-gap: 60px;
     position: absolute;
     left: 50%;
     top: 0;
-    // width: 40px;
     height: 100%;
+    width: 42px;
     z-index: 4;
     cursor: pointer;
-    // background: no-repeat url("../assets/explore-slider.svg");
-    // background-size: cover;
-    // background-position: center center;
 
     svg {
       display: block;
@@ -53,6 +50,13 @@ $container-gap: 60px;
       object-position: center center;
       user-select: none;
       fill: $bg-light-color;
+    }
+
+    &_active,
+    &:hover {
+      svg {
+        fill: $ui-active-color;
+      }
     }
   }
 
@@ -121,9 +125,6 @@ $container-gap: 60px;
     &__right {
       flex: 0 1 auto;
     }
-  }
-
-  .comparing-slider {
   }
 }
 
