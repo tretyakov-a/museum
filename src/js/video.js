@@ -8,7 +8,6 @@ function importAll(r) {
 
 const posters = importAll(require.context('../pictures/video/', false, /poster[0-9]*.(jpe?g)$/));
 const videos = importAll(require.context('../assets/video/videos/', false, /video[0-9]*.mp4$/));
-console.log(videos)
 let players = [];
 let video = null;
 

@@ -36,37 +36,60 @@ $container-gap: 60px;
 
   &__control {
     position: absolute;
-    right: -20px;
+    left: 50%;
     top: 0;
-    width: 40px;
+    // width: 40px;
     height: 100%;
-    background: no-repeat url("../assets/explore-slider.svg");
-    background-size: cover;
-    background-position: center center;
-    z-index: 2;
+    z-index: 4;
     cursor: pointer;
-    transition: $animation-duration;
+    // background: no-repeat url("../assets/explore-slider.svg");
+    // background-size: cover;
+    // background-position: center center;
 
-    &:hover {
-      filter: invert(55%) sepia(29%) saturate(387%) hue-rotate(356deg) brightness(150%) contrast(91%);
+    svg {
+      display: block;
+      height: 100%;
+      width: 100%;
+      object-position: center center;
+      user-select: none;
+      fill: $bg-light-color;
     }
   }
-  
-  &__before,
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 3;
+  }
+
+
+  &__after,
+  &__before {
+    height: 100%;
+    pointer-events: none;
+    user-select: none;
+  }
+
   &__after {
     width: 100%;
-    pointer-events: none;
   }
 
   &__before {
     position: absolute;
+    left: 2px;
+  }
+  
+  &__before-container {
+    overflow: hidden;
+    position: absolute;
     left: 0;
     top: 0;
+    width: 100%;
+    height: 100%;
     z-index: 1;
-  }
-
-  &__after {
-    position: relative;
   }
 }
 

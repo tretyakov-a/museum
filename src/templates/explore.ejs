@@ -12,9 +12,19 @@
     </div>
     <div class="explore__right">
       <div class="comparing-slider">
-        <div class="comparing-slider__control"></div>
-        <img class="comparing-slider__before" src="<%= require('../pictures/explore-slider/before.jpg') %>" alt="before">
-        <img class="comparing-slider__after" src="<%= require('../pictures/explore-slider/after.jpg') %>" alt="after">
+        <div class="comparing-slider__overlay"></div>
+        <div class="comparing-slider__control">
+          <svg draggable="false" width="39" height="700" viewBox="0 0 39 700" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M19.5 365C27.5081 365 34 358.508 34 350.5C34 342.492 27.5081 336 19.5 336C11.4919 336 5 342.492 5 350.5C5 358.508 11.4919 365 19.5 365ZM19.5 370C30.2696 370 39 361.27 39 350.5C39 339.73 30.2696 331 19.5 331C8.73045 331 0 339.73 0 350.5C0 361.27 8.73045 370 19.5 370Z"/>
+            <path d="M17 0H22V332H17V0Z"/>
+            <path d="M17 368H22V700H17V368Z"/>
+          </svg>
+          <!-- <img src="<%- require('../assets/explore-slider.svg')%>" alt="move right/left to compare" draggable="false"> -->
+        </div>
+        <div class="comparing-slider__before-container">
+          <img class="comparing-slider__before" src="<%= require('../pictures/explore-slider/before.jpg') %>" alt="before" draggable="false">
+        </div>
+        <img class="comparing-slider__after" src="<%= require('../pictures/explore-slider/after.jpg') %>" alt="after" draggable="false">
       </div>
     </div>
   </div>
