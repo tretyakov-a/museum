@@ -41,6 +41,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
     "core-js": "^3.19.3",
+    "mapbox-gl": "^2.6.1",
     "normalize.css": "^8.0.1"
   }
 }
