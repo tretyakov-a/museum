@@ -1,7 +1,8 @@
 import './styles/index.scss';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-import initBooking from './js/booking';
+import initTicketsForm from './js/tickets-form';
+import initBookingForm from './js/booking-form';
 import initVideo from './js/video';
 import initBurgerMenu from './js/header-menu';
 import CustomSlider from './js/slider';
@@ -11,12 +12,13 @@ import initMap from './js/map';
 
 window.addEventListener('load', () => {
   initVideo();
-  initBooking();
+  initTicketsForm();
+  initBookingForm();
   initBurgerMenu();
   initComparingSlider();
   initGallery();
   initMap();
-  
+
   const welcomeSlider = new CustomSlider(document.querySelector('.welcome-slider'), {
     animationDuration: 600,
   });

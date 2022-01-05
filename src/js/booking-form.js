@@ -7,7 +7,6 @@ const creditCardMonthSelect = document.querySelector('.credit-card__month-select
 const creditCardYearSelect = document.querySelector('.credit-card__year-select');
 const ticketTypeSelectOptions = document.querySelector('.booking-form__ticket-type-select-options');
 
-const ticketFormSubmit = document.querySelector('.tickets-form__submit');
 const booking = document.querySelector('.booking');
 const bookingCloseBtn = document.querySelector('.booking__close-btn');
 
@@ -48,12 +47,7 @@ export default function init() {
   
   bookingCloseBtn.addEventListener('click', hideBooking);
   
-  ticketFormSubmit.addEventListener('click', e => {
-    e.preventDefault();
-    e.stopPropagation();
-    booking.classList.add('booking_show');
-  });
-  
+ 
   
   document.addEventListener('click', e => {
     if (isClickOutside(e, [
