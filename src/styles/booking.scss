@@ -180,7 +180,7 @@
       color: $bg-dark-color;
     }
   }
-  
+
   &__date-input,
   &__time-input,
   &__ticket-type-select {
@@ -231,6 +231,10 @@
       transition: 0.2s;
 
       &:hover {
+        background: #e7e7e7;
+      }
+
+      &.active {
         background: #e7e7e7;
       }
     }
@@ -350,7 +354,7 @@
     line-height: 21px;
     border: 1px solid $bg-dark-color;
 
-    &-dec, &-inc {
+    &-btn {
       display: inline-block;
       flex: 1 0 35px;
       height: 100%;

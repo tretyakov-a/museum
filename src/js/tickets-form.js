@@ -6,7 +6,7 @@ const seniorDiscount = 0.5;
 const prices = {
   'permanent': 20,
   'temporary': 25,
-  'combained': 40,
+  'combined': 40,
 }
 
 let currentTicketType = 'permanent';
@@ -47,25 +47,30 @@ function calculateTotal() {
 
 function handleFormClick(e) {
   const radio = e.target.closest('input[name="ticket-type"]');
-
   if (radio) {
     handleRadioClick(e, radio);
   }
 
   const submitBtn = e.target.closest('.tickets-form__submit');
-
   if (submitBtn) {
     handleFormSubmit(e);
   }
 
   const numberBtn = e.target.closest('.tickets-form__number-btn');
-
   if (numberBtn) {
     handleNumberChange(e, numberBtn);
   }
 
   saveToLocalStorage();
+  updateForm();
+}
+
+function updateForm() {
+  setFormValues();
   renderTotal();
+  const event = new Event('formUpdate');
+  event.formData = { currentTicketType, ticketsNumber };
+  form.dispatchEvent(event);
 }
 
 function setFormValues() {
@@ -91,13 +96,11 @@ function loadFromLocalStorage() {
     currentTicketType = data.currentTicketType;
     ticketsNumber = data.ticketsNumber;
   }
-
-  setFormValues();
 }
 
 export default function init() {
   form.addEventListener('click', handleFormClick);
 
   loadFromLocalStorage();
-  renderTotal();
+  updateForm();
 }
