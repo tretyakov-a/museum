@@ -25,7 +25,7 @@ export default class CustomSlider {
     this.currentSlideIndex = 0;
     this.sliderContentStartX = 0;
     this.sliderContentCurrentX = 0;
-    this.swipeThreshold = 150;
+    this.swipeThreshold = 0.2 * this.slides[0].offsetWidth;
     this.animationDuration = options.animationDuration || 800;
     this.slidesToShow = options.slidesToShow || 1;
     this.rightMargin = options.rightMargin || 0;
@@ -118,12 +118,16 @@ export default class CustomSlider {
     this.sliderContainer.dispatchEvent(event);
   }
   
+  calculateTransition = (dx, revert = false) => {
+    const slideWidth = this.slides[0].offsetWidth;
+    const part = Math.abs(dx) % slideWidth / slideWidth;
+    const transition = (revert ? part : 1 - part) * this.animationDuration;
+    return transition;
+  }
+
   moveSlider = (dx = 0) => {
     this.isMoving = true;
-    const slideWidth = this.slides[0].offsetWidth;
-    const transition = (1 - ((Math.abs(dx) % slideWidth) / slideWidth)) * this.animationDuration;
-    // console.log(dx, slideWidth, 'transition=', transition)
-    this.addTransition(transition);
+    this.addTransition(this.calculateTransition(dx));
 
     let offset = 0;
     const rightEdge = this.currentSlideIndex === this.slidesNumber;
@@ -206,9 +210,10 @@ export default class CustomSlider {
     if (this.isMoving || !this.isSwiping) {
       return;
     }
-    this.addTransition(100);
     this.isSwiping = false;
     const dx = this.sliderContent.offsetLeft - this.sliderContentStartX;
+    this.addTransition(this.calculateTransition(dx, true));
+
     if (dx > this.swipeThreshold) {
       this.moveToSlideIndex(this.currentSlideIndex - 1, dx);
     } else if (dx < -this.swipeThreshold) {
