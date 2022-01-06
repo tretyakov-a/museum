@@ -26,11 +26,13 @@
 
   &__logo {
     margin-right: 141px;
+    flex: 0 0 auto;
   }
 
   &__adaptive-right {
     display: flex;
     align-items: flex-end;
+    flex: 1 1 100%;
   }
 
   &__menu-container {
@@ -56,9 +58,10 @@
   }
 
   &__socials {
-    width: 340px;
-    flex: 1 1 340px;
+    flex-grow: 1;
     height: 100%;
+    display: flex;
+    justify-content: flex-end;
   }
 
   

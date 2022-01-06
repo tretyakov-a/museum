@@ -66,4 +66,5 @@ export default function init() {
 
   video.addEventListener('play', handleMainVideoPlay);
   document.querySelector('.video-slider').addEventListener('slideChange', slideChangeHandler);
+  video.load();
 }

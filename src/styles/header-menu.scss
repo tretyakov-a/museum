@@ -288,8 +288,7 @@
       justify-content: space-between;
     }
 
-    &__menu-gallery-container,
-    &__menu-socials-container {
+    &__menu-gallery-container {
       display: block;
       align-self: center;
     }
@@ -300,8 +299,11 @@
       margin-bottom: 24px;
     }
 
-    &__menu-socials {
-      width: 340px;
+    &__menu-socials-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
     }
   }
   .header-menu {

@@ -62,8 +62,7 @@ export default class CustomSlider {
 
     window.addEventListener('resize', throttle(100, this.handleWindowResize));
 
-    this.setStartPosition();
-    setTimeout(this.addTransition);
+    this.handleWindowResize();
   }
 
   setStartPosition = () => {
@@ -123,7 +122,7 @@ export default class CustomSlider {
     this.isMoving = true;
     const slideWidth = this.slides[0].offsetWidth;
     const transition = (1 - ((Math.abs(dx) % slideWidth) / slideWidth)) * this.animationDuration;
-    console.log(dx, slideWidth, 'transition', transition)
+    // console.log(dx, slideWidth, 'transition=', transition)
     this.addTransition(transition);
 
     let offset = 0;
@@ -132,7 +131,7 @@ export default class CustomSlider {
     if (leftEdge || rightEdge) {
       const edgeSlide = rightEdge ? this.slides[this.slidesNumber - 1] : this.slides[0];
       const width = edgeSlide.offsetWidth + this.rightMargin;
-      offset = edgeSlide.offsetLeft + (rightEdge ? width : - width);
+      offset = edgeSlide.offsetLeft + (rightEdge ? width : -width);
     } else {
       offset = this.slides[this.currentSlideIndex].offsetLeft;
     }
