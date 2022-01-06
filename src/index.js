@@ -20,11 +20,11 @@ window.addEventListener('load', () => {
   initMap();
 
   const welcomeSlider = new CustomSlider(document.querySelector('.welcome-slider'), {
-    animationDuration: 600,
+    animationDuration: 1200,
   });
 
   const videoSlider = new CustomSlider(document.querySelector('.video-slider'), {
-    animationDuration: 200,
+    animationDuration: 400,
     slidesToShow: 3,
     rightMargin: 42
   });

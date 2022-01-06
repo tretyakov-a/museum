@@ -46,23 +46,19 @@ function calculateTotal() {
 }
 
 function handleFormClick(e) {
-  const radio = e.target.closest('input[name="ticket-type"]');
-  if (radio) {
-    handleRadioClick(e, radio);
+  const handlers = {
+    'radio': handleRadioClick,
+    'submit': handleFormSubmit,
+    'number-btn': handleNumberChange
   }
-
-  const submitBtn = e.target.closest('.tickets-form__submit');
-  if (submitBtn) {
-    handleFormSubmit(e);
-  }
-
-  const numberBtn = e.target.closest('.tickets-form__number-btn');
-  if (numberBtn) {
-    handleNumberChange(e, numberBtn);
-  }
-
-  saveToLocalStorage();
-  updateForm();
+  Object.keys(handlers).forEach(key => {
+    const el = e.target.closest(`.tickets-form__${key}`);
+    if (el) {
+      handlers[key].call(null, e, el);
+      saveToLocalStorage();
+      updateForm();
+    }
+  });
 }
 
 function updateForm() {

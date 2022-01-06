@@ -63,17 +63,6 @@ function toCamelCase(s) {
 }
 
 function updateOverview() {
-  // bookingOverviewFields ['date', 'time', 'ticketType', 'basicCount', 'basicPrice', 'basicAmount', 'seniorCount', 'seniorPrice', 'seniorAmount', 'total']
-
-  // bookingBasic: "1"
-  // bookingDate: ""
-  // bookingEmail: ""
-  // bookingName: ""
-  // bookingPhone: ""
-  // bookingSenior: "1"
-  // bookingTicketType: "temporary"
-  // bookingTime: ""
-
   const {
     bookingBasic,
     bookingSenior,
@@ -167,7 +156,6 @@ function handleFormSubmit(e) {
   e.preventDefault();
 
   console.log(e, 'FORM SUBMIT EVENT');
-  // booking.classList.add('booking_show');
 }
 
 function handleBookingFormClick(e) {

@@ -20,9 +20,12 @@ export default class CustomSlider {
     this.counterCurrent = this.sliderContainer.querySelector(SELECTORS.counterCurrent);
     this.slidesNumber = this.slides.length;
 
-    this.currentSlideIndex = -1;
-    this.touchstartX = 0;
-    this.touchendX = 0;
+    this.isMoving = false;
+    this.isSwiping = false;
+    this.currentSlideIndex = 0;
+    this.sliderContentStartX = 0;
+    this.sliderContentCurrentX = 0;
+    this.swipeThreshold = 150;
     this.animationDuration = options.animationDuration || 800;
     this.slidesToShow = options.slidesToShow || 1;
     this.rightMargin = options.rightMargin || 0;
@@ -50,16 +53,22 @@ export default class CustomSlider {
     this.sliderContainer.querySelector(SELECTORS.controls)
       .addEventListener('click', this.handleControlsClick);
   
+    this.sliderContent.addEventListener('mousedown', this.handleTouchStart);
     this.sliderContent.addEventListener('touchstart', this.handleTouchStart);
+    this.sliderContent.addEventListener('touchmove', this.handleTouchMove);
     this.sliderContent.addEventListener('touchend', this.handleTouchEnd);
-    window.addEventListener('resize', throttle(100, this.handleWindowResize));
-    
-    this.changeCurrentIndex = debounce(this.animationDuration, this.changeCurrentIndex);
 
-    setTimeout(() => {
-      this.changeCurrentIndex(0);
-      setTimeout(this.addTransition);
-    });
+    this.sliderContent.addEventListener('transitionend', this.handleTransitionEnd);
+
+    window.addEventListener('resize', throttle(100, this.handleWindowResize));
+
+    this.setStartPosition();
+    setTimeout(this.addTransition);
+  }
+
+  setStartPosition = () => {
+    const offset = this.slides[0].offsetWidth * this.slidesToShow;
+    this.sliderContent.style.left = `-${offset}px`;
   }
 
   insertSlidesBefore = slides => {
@@ -83,7 +92,8 @@ export default class CustomSlider {
     for (const dot of this.dots) {
       dot.classList.remove(activeModificator);
     }
-    this.dots[this.currentSlideIndex].classList.add(activeModificator);
+    const currentIndex = this.getFixedCurrentIndex();
+    this.dots[currentIndex].classList.add(activeModificator);
   }
   
   setCounter = (counterElement, n = this.currentSlideIndex + 1) => {
@@ -94,69 +104,52 @@ export default class CustomSlider {
     counterElement.textContent = text;
   }
   
-  changeCurrentIndex = (newIndex, edge = null) => {
-    if (this.currentSlideIndex === +newIndex) {
+  moveToSlideIndex = (newIndex, dx) => {
+    if (this.currentSlideIndex === +newIndex || this.isMoving) {
       return;
     }
+    
     this.currentSlideIndex = +newIndex;
     this.setActiveDot();
-    this.setCounter(this.counterCurrent);
-    this.moveSlider(edge);
-
-    // if (this.onChange) {
-    //   this.onChange.call(null, this.currentSlideIndex);
-    // }
+    this.setCounter(this.counterCurrent, this.getFixedCurrentIndex() + 1);
+    this.moveSlider(dx);
 
     const event = new Event('slideChange');
-    event.currentSlide = this.currentSlideIndex;
+    event.currentSlide = this.getFixedCurrentIndex();
     this.sliderContainer.dispatchEvent(event);
   }
   
-  processEdgeSlideMove = (offset, offsetEdge) => {
-    setTimeout(() => {
-      this.sliderContent.style.left = `-${offsetEdge}px`;
-      setTimeout(() => {
-        this.removeTransition();
-        this.sliderContent.style.left = `-${offset}px`;
-        setTimeout(this.addTransition, 20);
-      }, this.animationDuration - 20);
-    });
-  }
-  
-  moveSlider = (edge = null) => {
-    const slide = this.slides[this.currentSlideIndex];
-    const offset = slide.offsetLeft;
-    
-    if (edge && (edge.right || edge.left)) {
-      const edgeSlide = edge.right ? this.slides[this.slidesNumber - 1] : this.slides[0];
+  moveSlider = (dx = 0) => {
+    this.isMoving = true;
+    const slideWidth = this.slides[0].offsetWidth;
+    const transition = (1 - ((Math.abs(dx) % slideWidth) / slideWidth)) * this.animationDuration;
+    console.log(dx, slideWidth, 'transition', transition)
+    this.addTransition(transition);
+
+    let offset = 0;
+    const rightEdge = this.currentSlideIndex === this.slidesNumber;
+    const leftEdge = this.currentSlideIndex < 0;
+    if (leftEdge || rightEdge) {
+      const edgeSlide = rightEdge ? this.slides[this.slidesNumber - 1] : this.slides[0];
       const width = edgeSlide.offsetWidth + this.rightMargin;
-      const offsetEdge = edgeSlide.offsetLeft + (edge.right ? width : -width);
-      return this.processEdgeSlideMove(offset, offsetEdge);
+      offset = edgeSlide.offsetLeft + (rightEdge ? width : - width);
+    } else {
+      offset = this.slides[this.currentSlideIndex].offsetLeft;
     }
     
     this.sliderContent.style.left = `-${offset}px`;
   }
   
   handleDotClick = (data) => {
-    this.changeCurrentIndex(data.index);
+    this.moveToSlideIndex(data.index);
   }
   
-  handleNextClick = () => {
-    let newIndex = this.currentSlideIndex + 1;
-    let rightEdge = newIndex === this.slidesNumber;
-    if (rightEdge) {
-      newIndex = newIndex % this.slidesNumber;
-    }
-    this.changeCurrentIndex(newIndex, { right: rightEdge });
+  moveNextSlide = () => {
+    this.moveToSlideIndex(this.currentSlideIndex + 1);
   }
   
-  handlePrevClick = () => {
-    let newIndex = this.currentSlideIndex - 1;
-    let leftEdge = newIndex < 0;
-    if (leftEdge) {
-      newIndex = this.slidesNumber - 1;
-    }
-    this.changeCurrentIndex(newIndex, { left: leftEdge });
+  movePrevSlide = () => {
+    this.moveToSlideIndex(this.currentSlideIndex - 1);
   }
   
   handleControlsClick = (e) => {
@@ -166,39 +159,87 @@ export default class CustomSlider {
     }
     switch (btn.dataset.role) {
       case 'dot': this.handleDotClick(btn.dataset); break;
-      case 'prev-btn': this.handlePrevClick(); break;
-      case 'next-btn': this.handleNextClick(); break;
+      case 'prev-btn': this.moveToSlideIndex(this.currentSlideIndex - 1); break;
+      case 'next-btn': this.moveToSlideIndex(this.currentSlideIndex + 1);; break;
     }
   }
   
-  handleGesture = () => {
-    if (this.touchendX < this.touchstartX) {
-      this.handleNextClick();
+  getFixedCurrentIndex = () => {
+    if (this.currentSlideIndex < 0) {
+      return this.slidesNumber - 1;
+    } else if (this.currentSlideIndex === this.slidesNumber) {
+      return 0;
     }
-    if (this.touchendX > this.touchstartX) {
-      this.handlePrevClick();
+    return this.currentSlideIndex;
+  }
+
+  handleTransitionEnd = () => {
+    this.isMoving = false;
+    this.removeTransition();
+    
+    const fixedIndex = this.getFixedCurrentIndex();
+    if (this.currentSlideIndex !== fixedIndex) {
+      this.currentSlideIndex = fixedIndex;
+      this.sliderContent.style.left = `-${this.slides[this.currentSlideIndex].offsetLeft}px`;
     }
+   
+    setTimeout(this.addTransition);
   }
   
   handleTouchStart = (e) => {
-    this.touchstartX = e.changedTouches[0].screenX;
+    e.preventDefault();
+    if (this.isMoving) {
+      return;
+    }
+    this.isSwiping = true;
+    this.removeTransition();
+    this.sliderContentStartX = this.sliderContent.offsetLeft;
+    if (e.type == 'touchstart') {
+      this.sliderContentCurrentX = e.touches[0].clientX;
+    } else {
+      this.sliderContentCurrentX = e.clientX;
+      document.addEventListener('mouseup', this.handleTouchEnd);
+      document.addEventListener('mousemove', this.handleTouchMove);
+    }
   }
   
   handleTouchEnd = (e) => {
-    this.touchendX = e.changedTouches[0].screenX;
-    this.handleGesture();
+    if (this.isMoving || !this.isSwiping) {
+      return;
+    }
+    this.addTransition(100);
+    this.isSwiping = false;
+    const dx = this.sliderContent.offsetLeft - this.sliderContentStartX;
+    if (dx > this.swipeThreshold) {
+      this.moveToSlideIndex(this.currentSlideIndex - 1, dx);
+    } else if (dx < -this.swipeThreshold) {
+      this.moveToSlideIndex(this.currentSlideIndex + 1, dx);
+    } else {
+      this.sliderContent.style.left = `${this.sliderContentStartX}px`;
+    }
+    document.removeEventListener('mouseup', this.handleTouchEnd);
+    document.removeEventListener('mousemove', this.handleTouchMove);
+  }
+
+  handleTouchMove = (e) => {
+    if (this.isMoving || !this.isSwiping) {
+      return;
+    }
+    
+    const clientX = e.type == 'touchmove' ? e.touches[0].clientX : e.clientX;
+    const dx = this.sliderContentCurrentX - clientX;
+    this.sliderContentCurrentX = clientX;
+
+    this.sliderContent.style.left = (this.sliderContent.offsetLeft - dx) + 'px';
   }
   
   handleWindowResize = (e) => {
-    this.removeTransition();
     this.moveSlider();
-    setTimeout(() => {
-      this.addTransition();
-    });
+    this.handleTransitionEnd();
   }
   
-  addTransition = () => {
-    this.sliderContent.style.transition = `${this.animationDuration}ms ease-in-out`;
+  addTransition = (transition = this.animationDuration) => {
+    this.sliderContent.style.transition = `${transition}ms ease-in-out`;
   }
   
   removeTransition = () => {
