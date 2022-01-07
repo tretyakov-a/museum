@@ -1,5 +1,4 @@
 import './styles/index.scss';
-import 'mapbox-gl/dist/mapbox-gl.css';
 
 import initTicketsForm from './js/tickets-form';
 import initBookingForm from './js/booking-form';

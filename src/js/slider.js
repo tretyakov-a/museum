@@ -1,4 +1,4 @@
-import { debounce, throttle } from '../js/helpers';
+import { throttle } from '../js/helpers';
 
 const setSelector = role => `[data-role="${role}"]`;
 
@@ -18,8 +18,8 @@ export default class CustomSlider {
     this.slides = [...this.sliderContainer.querySelectorAll(SELECTORS.slide)];
     this.dots = this.sliderContainer.querySelectorAll(SELECTORS.dot);
     this.counterCurrent = this.sliderContainer.querySelector(SELECTORS.counterCurrent);
+    
     this.slidesNumber = this.slides.length;
-
     this.isMoving = false;
     this.isSwiping = false;
     this.currentSlideIndex = 0;
@@ -29,24 +29,13 @@ export default class CustomSlider {
     this.animationDuration = options.animationDuration || 800;
     this.slidesToShow = options.slidesToShow || 1;
     this.rightMargin = options.rightMargin || 0;
-    this.onChange = options.onChange || null;
     
     if (this.slidesNumber <= this.slidesToShow) {
       return;
     }
-
-    const firstSlides = [];
-    for (let i = 0; i < this.slidesToShow; i += 1) {
-      firstSlides.push(this.slides[i].cloneNode(true));
-    }
     
-    const lastSlides = [];
-    for (let i = 0; i < this.slidesToShow; i += 1) {
-      lastSlides.push(this.slides[this.slidesNumber - 1 - i].cloneNode(true));
-    }
-    
-    this.insertSlidesBefore(lastSlides);
-    this.appendSlides(firstSlides);
+    this.insertCloneSlidesBefore();
+    this.appendCloneSlides();
 
     this.setCounter(this.sliderContainer.querySelector(SELECTORS.counterTotal), this.slidesNumber);
   
@@ -70,14 +59,22 @@ export default class CustomSlider {
     this.sliderContent.style.left = `-${offset}px`;
   }
 
-  insertSlidesBefore = slides => {
-    for (let i = slides.length - 1; i >= 0; i -= 1) {
-      this.sliderContent.insertBefore(slides[i], this.slides[0]);
+  insertCloneSlidesBefore = () => {
+    const lastSlides = [];
+    for (let i = 0; i < this.slidesToShow; i += 1) {
+      lastSlides.push(this.slides[this.slidesNumber - 1 - i].cloneNode(true));
+    }
+    for (let i = lastSlides.length - 1; i >= 0; i -= 1) {
+      this.sliderContent.insertBefore(lastSlides[i], this.slides[0]);
     }
   }
 
-  appendSlides = slides => {
-    slides.forEach(slide => {
+  appendCloneSlides = () => {
+    const firstSlides = [];
+    for (let i = 0; i < this.slidesToShow; i += 1) {
+      firstSlides.push(this.slides[i].cloneNode(true));
+    }
+    firstSlides.forEach(slide => {
       this.sliderContent.append(slide);
     })
   }
@@ -95,10 +92,11 @@ export default class CustomSlider {
     this.dots[currentIndex].classList.add(activeModificator);
   }
   
-  setCounter = (counterElement, n = this.currentSlideIndex + 1) => {
+  setCounter = (counterElement, n = this.currentSlideIndex) => {
     if (!counterElement) {
       return;
     }
+    n += 1;
     const text = n < 10 ? '0' + n : n;
     counterElement.textContent = text;
   }
@@ -110,14 +108,14 @@ export default class CustomSlider {
     
     this.currentSlideIndex = +newIndex;
     this.setActiveDot();
-    this.setCounter(this.counterCurrent, this.getFixedCurrentIndex() + 1);
+    this.setCounter(this.counterCurrent, this.getFixedCurrentIndex());
     this.moveSlider(dx);
 
     const event = new Event('slideChange');
     event.currentSlide = this.getFixedCurrentIndex();
     this.sliderContainer.dispatchEvent(event);
   }
-  
+
   calculateTransition = (dx, revert = false) => {
     const slideWidth = this.slides[0].offsetWidth;
     const part = Math.abs(dx) % slideWidth / slideWidth;
@@ -147,14 +145,6 @@ export default class CustomSlider {
     this.moveToSlideIndex(data.index);
   }
   
-  moveNextSlide = () => {
-    this.moveToSlideIndex(this.currentSlideIndex + 1);
-  }
-  
-  movePrevSlide = () => {
-    this.moveToSlideIndex(this.currentSlideIndex - 1);
-  }
-  
   handleControlsClick = (e) => {
     const btn = e.target.closest('[data-role]');
     if (!btn) {
@@ -163,7 +153,7 @@ export default class CustomSlider {
     switch (btn.dataset.role) {
       case 'dot': this.handleDotClick(btn.dataset); break;
       case 'prev-btn': this.moveToSlideIndex(this.currentSlideIndex - 1); break;
-      case 'next-btn': this.moveToSlideIndex(this.currentSlideIndex + 1);; break;
+      case 'next-btn': this.moveToSlideIndex(this.currentSlideIndex + 1); break;
     }
   }
   
@@ -240,6 +230,7 @@ export default class CustomSlider {
   handleWindowResize = (e) => {
     this.moveSlider();
     this.handleTransitionEnd();
+    this.swipeThreshold = 0.2 * this.slides[0].offsetWidth;
   }
   
   addTransition = (transition = this.animationDuration) => {

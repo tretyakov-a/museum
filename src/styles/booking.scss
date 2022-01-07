@@ -383,7 +383,7 @@
       &-img {
         img {
           display: block;
-          width: 150px;
+          width: 100%;
           object-fit: cover;
         }
       }
@@ -497,7 +497,8 @@
 
   &__submit {
     align-self: flex-end;
-    width: 220px;
+    width: 100%;
+    max-width: 220px;
     height: 45px;
     background: $ui-color;
     color: $light-text-color;
@@ -534,7 +535,8 @@
 
   &__front,
   &__back {
-    width: 360px;
+    max-width: 360px;
+    width: 100%;
     height: 211px;
     padding: 15px 20px;
     border-radius: 5px;
@@ -551,7 +553,8 @@
   }
 
   &__row:not(:last-child) {
-    width: 215px;
+    width: 100%;
+    max-width: 215px;
     margin-bottom: 10px;
   }
 
@@ -644,7 +647,7 @@
   }
 }
 
-@media (max-width: 850px) {
+@media (max-width: 1000px) {
   .booking {
     overflow: auto;
     align-items: flex-start;
@@ -652,6 +655,7 @@
     &__container {
       flex: 0 1 590px;
       max-width: 590px;
+      padding-top: 30px;
     }
   }
 
@@ -669,6 +673,7 @@
 
     &__overview {
       flex: 0 1 100%;
+      padding: 25px 15px;
     }
   }
 }
@@ -680,9 +685,75 @@
 }
 
 @media (max-width: $adaptive-width-tablet) {
-  
+}
+
+@media (max-width: 600px) {
+  .credit-card {
+    height: auto;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__back {
+      position: static;
+      margin-top: 20px;
+    }
+  }
+
+  .booking-form {
+    &__row {
+      &_columns {
+        flex-direction: column;
+      }
+    }
+
+    &__input-wrapper {
+      &_date {
+        margin-right: 0px;
+        margin-bottom: 20px;
+      }
+
+      &_date, &_time {
+        flex-basis: auto;
+      }
+    }
+  }
 }
 
 @media (max-width: $adaptive-width-phone) {
-  
+  .booking {
+    &__header {
+      font-size: 32px;
+      line-height: 35px;
+    }
+
+    &__subheader {
+      margin-bottom: 40px;
+    }
+  }
+}
+
+@media (max-width: 440px) {
+  .booking {
+    &__close-btn {
+      right: 15px;
+    }
+
+    &__container {
+      padding: 15px;
+      padding-top: 30px;
+    }
+  }
+  .credit-card {
+    &__front {
+      background: none, none, #bcbcbc;
+    }
+  }
+  .booking-form {
+
+    &__overview-header-img {
+      display: none;
+    }
+  }
 }

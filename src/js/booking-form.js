@@ -155,7 +155,9 @@ function handleNumberChange(e, btn) {
 function handleFormSubmit(e) {
   e.preventDefault();
 
-  console.log(e, 'FORM SUBMIT EVENT');
+  setTimeout(() => {
+    alert('Form was successfully sent to the server (actually, it wasn`t)');
+  }, 1000);
 }
 
 function handleBookingFormClick(e) {
