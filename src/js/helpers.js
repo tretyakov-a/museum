@@ -54,3 +54,10 @@ export function shuffle(array) {
   }
   return result;
 };
+
+export function toCamelCase(s) {
+  return s.split('-')
+    .map((word, i) => i !== 0 ? word[0]
+    .toUpperCase() + word.slice(1) : word)
+    .join('');
+}

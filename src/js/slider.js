@@ -12,7 +12,8 @@ const SELECTORS = {
 }
 
 export default class CustomSlider {
-  constructor(slider, options = {}) {
+  constructor(slider, options) {
+    this.setOptions(options);
     this.sliderContainer = slider;
     this.sliderContent = this.sliderContainer.querySelector(SELECTORS.content);
     this.slides = [...this.sliderContainer.querySelectorAll(SELECTORS.slide)];
@@ -26,9 +27,6 @@ export default class CustomSlider {
     this.sliderContentStartX = 0;
     this.sliderContentCurrentX = 0;
     this.swipeThreshold = 0.2 * this.slides[0].offsetWidth;
-    this.animationDuration = options.animationDuration || 800;
-    this.slidesToShow = options.slidesToShow || 1;
-    this.rightMargin = options.rightMargin || 0;
     
     if (this.slidesNumber <= this.slidesToShow) {
       return;
@@ -42,16 +40,30 @@ export default class CustomSlider {
     this.sliderContainer.querySelector(SELECTORS.controls)
       .addEventListener('click', this.handleControlsClick);
   
-    this.sliderContent.addEventListener('mousedown', this.handleTouchStart);
-    this.sliderContent.addEventListener('touchstart', this.handleTouchStart);
-    this.sliderContent.addEventListener('touchmove', this.handleTouchMove);
-    this.sliderContent.addEventListener('touchend', this.handleTouchEnd);
+    if (this.swiping) {
+      this.sliderContent.addEventListener('mousedown', this.handleTouchStart);
+      this.sliderContent.addEventListener('touchstart', this.handleTouchStart);
+      this.sliderContent.addEventListener('touchmove', this.handleTouchMove);
+      this.sliderContent.addEventListener('touchend', this.handleTouchEnd);
+    }
 
     this.sliderContent.addEventListener('transitionend', this.handleTransitionEnd);
 
     window.addEventListener('resize', throttle(100, this.handleWindowResize));
 
     this.handleWindowResize();
+  }
+
+  setOptions = ({
+    animationDuration = 800,
+    slidesToShow = 1,
+    rightMargin = 0,
+    swiping = true
+  }) => {
+    this.animationDuration = animationDuration;
+    this.slidesToShow = slidesToShow;
+    this.rightMargin = rightMargin;
+    this.swiping = swiping;
   }
 
   setStartPosition = () => {

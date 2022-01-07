@@ -402,6 +402,11 @@
       color: $ui-color;
       margin-bottom: 10px;
     }
+    
+    &-not-choosen {
+      opacity: 0.5;
+      color: $ui-color;
+    }
 
     &-summary {
       font-weight: 300;

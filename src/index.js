@@ -1,7 +1,7 @@
 import './styles/index.scss';
 
-import initTicketsForm from './js/tickets-form';
-import initBookingForm from './js/booking-form';
+import { init as initTicketsForm } from './js/tickets-form';
+import initBooking from './js/booking';
 import initVideo from './js/video';
 import initBurgerMenu from './js/header-menu';
 import CustomSlider from './js/slider';
@@ -12,7 +12,7 @@ import initMap from './js/map';
 window.addEventListener('load', () => {
   initVideo();
   initTicketsForm();
-  initBookingForm();
+  initBooking();
   initBurgerMenu();
   initComparingSlider();
   initGallery();
@@ -25,6 +25,7 @@ window.addEventListener('load', () => {
   const videoSlider = new CustomSlider(document.querySelector('.video-slider'), {
     animationDuration: 400,
     slidesToShow: 3,
-    rightMargin: 42
+    rightMargin: 42,
+    swiping: false
   });
 });
